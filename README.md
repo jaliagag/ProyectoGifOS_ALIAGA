@@ -1,2 +1,2 @@
 # ProyectoGifOS
- Trabajo práctico acámica
+ Segundo trabajo práctico acámica
