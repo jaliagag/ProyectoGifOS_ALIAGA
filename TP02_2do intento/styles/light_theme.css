@@ -1,0 +1,82 @@
+body {
+  background-color: #FDF4FC;
+  color: #110038; }
+
+.movingTrain {
+  background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%); }
+
+#logo_noche {
+  display: none; }
+
+#logo_dia {
+  display: block; }
+
+.btn {
+  background: #F7C9F3;
+  border: 1px solid #110038;
+  box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+  color: #110038 100%; }
+
+.btn:hover {
+  background: #E6BBE2;
+  border: 1px solid #110038;
+  box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF; }
+
+.dropdown-content {
+  background: #E6E6E6;
+  box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF; }
+  .dropdown-content a {
+    background: #F0F0F0;
+    border: 1px solid #808080;
+    box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF; }
+  .dropdown-content a:hover {
+    background: #FFF4FD;
+    border: 1px solid #CCA6C9;
+    box-shadow: inset -1px -1px 0 0 #E6DCE4, inset 1px 1px 0 0 #FFFFFF; }
+
+.misGuizzmos:hover {
+  border: 1px dotted #110038; }
+
+.padre01 {
+  background: #F7C9F3;
+  border: 1px solid #110038;
+  box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF; }
+
+.padre01:hover {
+  background: #E6BBE2; }
+
+.padre01:hover .span01, .padre01:hover .imag01 {
+  border: 1px dotted #110038; }
+
+.span01, .imag01 {
+  border: 1px solid #110038;
+  box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF; }
+
+.searchEBox {
+  background: #E6E6E6;
+  box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF; }
+
+.buscarSpan {
+  background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%); }
+
+#btnBuscar {
+  background: #E6E6E6;
+  border: 1px solid #808080;
+  box-shadow: inset -1px -1px 0 0 #B4B4B4, inset 1px 1px 0 0 #FFFFFF;
+  color: #B4B4B4; }
+
+.sugText {
+  background: #FFFAFE;
+  border: 1px solid #E6BBE2;
+  box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D; }
+  .sugText span {
+    color: #110038; }
+
+.tedText {
+  background: #FFFAFE;
+  border: 1px solid #E6BBE2;
+  box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D; }
+  .tedText span {
+    color: #110038; }
+
+/*# sourceMappingURL=light_theme.css.map */
