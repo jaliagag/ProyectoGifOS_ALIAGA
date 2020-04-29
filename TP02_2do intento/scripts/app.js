@@ -16,10 +16,16 @@ fetch(aleatorio).then((res)=>{
 })
 
 // 
-var queBuscar = document.getElementById("")
-var buscar = document.getElementById("btnBuscar");
-que.addEventListener("submit", leSearch());
+var loEscrito = document.getElementById("haceBuscar");
+var buscar = document.getElementById("cuadroBusqueda");
+loEscrito.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let finalmenteElInput = buscar.value;
+    console.log(finalmenteElInput);
+});
 
-function leSearch(q) {
-  console.log(que.value);
-}
+/* function leSearch() {
+    e.preventDefault();
+    console.log(buscar.value);
+    //leSearch()
+} */

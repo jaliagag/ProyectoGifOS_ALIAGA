@@ -123,10 +123,13 @@ a {
 
 .buscador {
   height: 75px;
-  display: flex;
-  align-items: center;
   font-family: "Chakra Petch", sans-serif;
   margin-bottom: 3.9%; }
+
+#haceBuscar {
+  margin-left: 5px;
+  display: flex;
+  align-items: center; }
 
 #cuadroBusqueda {
   z-index: 0;
