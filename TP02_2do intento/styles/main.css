@@ -159,21 +159,79 @@ a {
   width: 1200px;
   height: 32px;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  background: #FFFAFE;
+  border: 1px solid #E6BBE2;
+  box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D; }
   .sugText span {
     padding-left: 5px;
     font-family: "ChakraPetch", sans-serif;
     font-size: 14px;
-    letter-spacing: 0; }
+    letter-spacing: 0;
+    color: #110038; }
 
-.tendencias {
-  margin-top: 400px; }
+.row {
+  display: flex;
+  margin-top: 1.4%;
+  margin-bottom: 1.4%; }
+
+.gifBox {
+  width: 288px;
+  height: 313px;
+  background-color: black;
+  margin-left: 1.4%;
+  background: #E6E6E6;
+  box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+
+.arribita {
+  width: 280px;
+  height: 24px;
+  display: flex;
+  color: #FFFFFF 100%;
+  font-size: 14px;
+  justify-content: space-between; }
+
+.elGif {
+  width: 280px;
+  height: 280px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 0; }
+
+.sugBorde {
+  width: 278px;
+  height: 278px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end; }
+
+.sugBorder:hover {
+  border: 1px dotted #110038; }
+
+.cajitaMas {
+  widht: 81px;
+  height: 34px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  z-index: 100; }
+
+.cajitaMas:hover {
+  border: 1px dotted #110038; }
 
 .tendText {
   width: 1200px;
   height: 32px;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  background: #FFFAFE;
+  border: 1px solid #E6BBE2;
+  box-shadow: inset -2px -2px 0 0 #E6DCE4, inset 2px 2px 0 0 #80687D;
+  color: #110038; }
   .tendText span {
     padding-left: 5px;
     font-family: "ChakraPetch", sans-serif;
