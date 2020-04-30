@@ -15,7 +15,7 @@ fetch(aleatorio).then((res)=>{
     console.log(err.message);
 })
 
-// 
+// devuelve en consola lo que se escribe y se le hace enter
 var loEscrito = document.getElementById("haceBuscar");
 var buscar = document.getElementById("cuadroBusqueda");
 loEscrito.addEventListener("submit", (e) => {
@@ -29,3 +29,17 @@ loEscrito.addEventListener("submit", (e) => {
     console.log(buscar.value);
     //leSearch()
 } */
+
+	
+// https://www.algolia.com/doc/api-reference/api-parameters/offset/?language=javascript
+index.search('query', {
+    offset: 4,
+  }).then(({ hits }) => {
+    console.log(hits);
+  });
+  
+cuadroBusqueda.addEventListener("input",  )
+
+let test = () => {
+    
+}
