@@ -219,7 +219,8 @@ a {
   display: flex;
   color: #FFFFFF 100%;
   font-size: 14px;
-  justify-content: space-between; }
+  justify-content: space-between;
+  align-items: center; }
 
 .elGif {
   width: 280px;
@@ -236,7 +237,8 @@ a {
   height: 278px;
   display: flex;
   flex-direction: row;
-  align-items: flex-end; }
+  align-items: flex-end;
+  z-index: 1; }
 
 .sugBorder:hover {
   border: 1px dotted #110038; }

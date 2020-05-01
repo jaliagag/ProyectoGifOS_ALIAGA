@@ -12,7 +12,7 @@ let theme_selection = () => {
     } else if (hayAlgoQ == "light"){
       fboton();
     } else {
-      console.log("paso")
+      //console.log("paso")
       sboton();
     }
   } else {
