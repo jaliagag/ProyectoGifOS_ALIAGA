@@ -49,7 +49,7 @@ sugArray.forEach(inicioGif);
 //##############################################################
 
 // BUSCADOR
-// devuelve en consola lo que se escribe y se le hace enter
+// FALTA: hacer el 
 
 var loEscrito = document.getElementById("haceBuscar");
 var buscar = document.getElementById("cuadroBusqueda");
@@ -57,8 +57,6 @@ var buscar = document.getElementById("cuadroBusqueda");
 loEscrito.addEventListener("submit", (e) => {
     e.preventDefault();
     let finalmenteElInput = buscar.value;
-    //imprimirNewHTML(finalmenteElInput);
-    //alert(finalmenteElInput);
     busquedaResultadosArr.unshift(finalmenteElInput);
     window.localStorage.setItem("searchTerm", finalmenteElInput);
     window.location.href = "busq.html";
@@ -66,7 +64,7 @@ loEscrito.addEventListener("submit", (e) => {
 
 let imprimirNewHTML = () => {
     let inputBusqueda = localStorage.getItem("searchTerm");
-    let busqueda = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${inputBusqueda}`;
+    let busqueda = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${inputBusqueda}&limit=20`;
     console.log(busqueda);
     //console.log(busqueda);
     let dondeImprimir = document.getElementById("resultadoBusqueda");
@@ -77,7 +75,8 @@ let imprimirNewHTML = () => {
 
         json.data.forEach((obj) => {
             const url = obj.images.fixed_width.url;
-            laNada += `<img src="${url}" alt="gif" z-index=0>`;
+            laNada += `<img src="${url}" alt="gif" z-index=0 class="gifTraido">`;
+            // determinar la anchura: widht="200"
         })
         dondeImprimir.innerHTML = laNada;
     }).catch((err) => {
