@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="../styles/light_theme.css" type="text/css" id = "estilardo">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/light_theme.css" type="text/css" id = "estilardo">
     <title>GifOS</title>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap" rel="stylesheet">
 </head>
-<body onload="theme_selection()">
+<body onload="theme_selection(); imprimirNewHTML()">
     <div class="movingTrain">
         <span>¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: 12.765.803</span>
     </div>
@@ -16,19 +16,19 @@
         <div id="primerElemento">
             <div class="wrapper">
                 <div class="logo">
-                    <a href="index.html"><img src="../assets/gifOF_logo.png" alt="logo_main" id="logo_dia"></a>
-                    <a href="index.html"><img src="../assets/gifOF_logo_dark.png" alt="logo_main" id="logo_noche"></a>
+                    <a href="index.html"><img src="assets/gifOF_logo.png" alt="logo_main" id="logo_dia"></a>
+                    <a href="index.html"><img src="assets/gifOF_logo_dark.png" alt="logo_main" id="logo_noche"></a>
                 </div>
                 <nav>
                     <ul>
-                        <li class="btn"><a id="create" class="border" href="../crear_guifos/crearGuifos.html"><span>Crear Guifos</span></a></li>
+                        <li class="btn"><a id="create" class="border" href="crear_guifos/crearGuifos.html"><span>Crear Guifos</span></a></li>
                         <li>
                             <div id="dropbtn">
                                 <div class="padre01" onclick="mostrar()">
                                     <div class="span01">
                                         <span>Elegir tema</span>
                                     </div>
-                                    <span class="imag01"><img src="../assets/dropdown.svg" /></span>                      
+                                    <span class="imag01"><img src="assets/dropdown.svg" /></span>                      
                                 </div>
                                 <div id="myDropdown" class="dropdown-content">
                                     <a id="luz" onclick="fboton()" class="option" href="#light">Sailor Day</a>
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li><a href="../mis_guifos/misGuifos.html" class="misGuizzmos"><span class="spancito">Mis Guifos</span></a></li>
+                        <li><a href="mis_guifos/misGuifos.html" class="misGuizzmos"><span class="spancito">Mis Guifos</span></a></li>
                     </ul>
                 </nav>
             </div>
@@ -53,7 +53,7 @@
                     <input type="search" placeholder=" Busca gifs, hastags, temas, busca lo que quieras" id="cuadroBusqueda">
                     <div id="bordeBuscar">
                         <button id="btnBuscar" type="submit">
-                            <img src="../assets/lupa_inactive.svg" id="lupita">
+                            <img src="assets/lupa_inactive.svg" id="lupita">
                             <span>Buscar</span>
                         </button>
                     </div>
@@ -80,7 +80,7 @@
 
     </div>
 
-    <script src="../scripts/main.js"></script>
-    <script src="../scripts/app.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/app.js"></script>
 </body>
 </html>

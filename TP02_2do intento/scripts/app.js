@@ -1,45 +1,84 @@
 const apikey = "dkElzr6SJfgkAbeHk3kGa70yrOiwrdcP";
 const laTag ="homer"
-const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}&limit=1&tag=${laTag}`;
+const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}&limit=1`;
+//const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}&limit=1&tag=${laTag}`;
+//const resultsEl = document.getElementById("gifsTende");
 
-const resultsEl = document.getElementById("gifsTende");
+// Crear un array que quede en localStorage y que al que pueda acceder la 
+// página busq.html
 
-fetch(aleatorio).then((res)=>{
-    return res.json();
-}).then((json) => {
-    let resultsHTML = json.data.image_original_url;
-    let asddf = "";
-    asddf += `<img src="${resultsHTML}" alt="gif aleatorio" z-index=0>`;
-    resultsEl.innerHTML = asddf;
-    // agregar el cuadro de ver más acá
-}).catch((err) => {
-    console.log(err.message);
-})
+var busquedaResultadosArr = [];
+    // máximo número de resultados de búsqueda que voy a guardar Y mostrar
+    // usar UNSHIFT para agregar al principio
+busquedaResultadosArr.length = 7;
+    // guardar en memoria el array
+//window.localStorage.setItem("0", busquedaResultadosArr[0]);
 
+//##############################################################
+
+// ingresar gif aleatorio
+
+let inicioGif = (id) => {
+    fetch(aleatorio).then((res)=>{
+        return res.json();
+    }).then((json) => {
+        let resultsHTML = json.data.image_original_url;
+        let asddf = "";
+        asddf += `<img src="${resultsHTML}" alt="gif aleatorio" z-index=0>`
+        id.innerHTML = asddf;
+        // agregar el cuadro de ver más acá
+    }).catch((err) => {
+        console.log(err.message);
+    })
+    /* let agregarCuadrito = `
+        <div class="sugBorde">
+            <div class="cajitaMas"><span>Ver más...</span></div>
+        </div>`
+    resultsEl.innerHTML += agregarCuadrito; */
+}
+
+// que todos los elementos con la clase "elGif" haga la función inicioGif
+elements = document.querySelectorAll('#gifsTende');
+console.log(elements);
+let sugArray = [elements];
+console.log(sugArray);
+
+sugArray.forEach(inicioGif);
+
+//##############################################################
+//##############################################################
+
+// BUSCADOR
 // devuelve en consola lo que se escribe y se le hace enter
+
 var loEscrito = document.getElementById("haceBuscar");
 var buscar = document.getElementById("cuadroBusqueda");
-
 
 loEscrito.addEventListener("submit", (e) => {
     e.preventDefault();
     let finalmenteElInput = buscar.value;
     //imprimirNewHTML(finalmenteElInput);
-    window.sessionStorage.setItem("searchTerm", finalmenteElInput);
-    window.location.href = "res_busq/busq.html";
-});
-  
+    //alert(finalmenteElInput);
+    busquedaResultadosArr.unshift(finalmenteElInput);
+    window.localStorage.setItem("searchTerm", finalmenteElInput);
+    window.location.href = "busq.html";
+});  
 
-let imprimirNewHTML = (value) => {
-    let busqueda = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${value}`;
+let imprimirNewHTML = () => {
+    let inputBusqueda = localStorage.getItem("searchTerm");
+    let busqueda = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${inputBusqueda}`;
+    console.log(busqueda);
     //console.log(busqueda);
     let dondeImprimir = document.getElementById("resultadoBusqueda");
     fetch(busqueda).then((res) => {
         return res.json();
     }).then((json) => {
-        let agarrarGifs = json.data.image_original_url;
         let laNada = "";
-        laNada += `<img src="${agarrarGifs}" alt="gif" z-index=0>`;
+
+        json.data.forEach((obj) => {
+            const url = obj.images.fixed_width.url;
+            laNada += `<img src="${url}" alt="gif" z-index=0>`;
+        })
         dondeImprimir.innerHTML = laNada;
     }).catch((err) => {
         console.log(err.message);
