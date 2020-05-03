@@ -53,6 +53,9 @@ sugArray.forEach(inicioGif);
 
 var loEscrito = document.getElementById("haceBuscar");
 var buscar = document.getElementById("cuadroBusqueda");
+/* var sugerencia01 = document.getElementById("sug_01").value;
+var sugerencia02 = document.getElementById("sug_02").value;
+var sugerencia03 = document.getElementById("sug_03").value; */
 
 loEscrito.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -61,6 +64,30 @@ loEscrito.addEventListener("submit", (e) => {
     window.localStorage.setItem("searchTerm", finalmenteElInput);
     window.location.href = "busq.html";
 });  
+
+/* sugerencia01.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let finalmenteElInput = buscar.value;
+    busquedaResultadosArr.unshift(finalmenteElInput);
+    window.localStorage.setItem("searchTerm", finalmenteElInput);
+    window.location.href = "busq.html";
+});  
+
+sugerencia02.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let finalmenteElInput = buscar.value;
+    busquedaResultadosArr.unshift(finalmenteElInput);
+    window.localStorage.setItem("searchTerm", finalmenteElInput);
+    window.location.href = "busq.html";
+});  
+
+sugerencia03.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let finalmenteElInput = buscar.value;
+    busquedaResultadosArr.unshift(finalmenteElInput);
+    window.localStorage.setItem("searchTerm", finalmenteElInput);
+    window.location.href = "busq.html";
+});  */ 
 
 let imprimirNewHTML = () => {
     let inputBusqueda = localStorage.getItem("searchTerm");
@@ -85,6 +112,8 @@ let imprimirNewHTML = () => {
     });
 };
 
+// muestra y busca sugerencias
+
 buscar.addEventListener("input", updateValue);
 
 function updateValue(e) {
@@ -95,6 +124,7 @@ function updateValue(e) {
         let sale = document.getElementById("muestraONo");
         if (sale.style.display === "none") {
             sale.style.display = "block";
+            sale.style.position = "absolute";
           } else {
             sale.style.display = "none";
           }
@@ -141,6 +171,8 @@ function updateValue(e) {
 
     // send search suggestion request
     httpGetAsync(autoc_url,tenorCallback_searchSuggestion);
+
+
 
 }
 
