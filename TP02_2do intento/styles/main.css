@@ -172,8 +172,18 @@ a {
   text-decoration: none;
   color: #110038;
   display: flex;
+  align-items: center;
+  padding-left: 5px;
+  padding-right: 5px;
   margin-top: 15px;
   margin-left: 15px; }
+
+.inFlexiza {
+  width: 100%; }
+
+.inFlexiza:hover {
+  background: #DBDBDB;
+  border: 1px dotted #110038; }
 
 .flexiza {
   display: flex;
@@ -265,6 +275,9 @@ a {
   height: 290px;
   overflow: hidden;
   border: 1px solid #110038; }
+
+.gifTraido:hover {
+  cursor: pointer; }
 
 .tendText {
   width: 1200px;

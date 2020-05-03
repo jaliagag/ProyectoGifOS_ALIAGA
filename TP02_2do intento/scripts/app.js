@@ -1,4 +1,5 @@
 const apikey = "dkElzr6SJfgkAbeHk3kGa70yrOiwrdcP";
+const tenor = "RZZXC4BYAXIL";
 const laTag ="homer"
 const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}&limit=1`;
 //const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}&limit=1&tag=${laTag}`;
@@ -73,7 +74,10 @@ let imprimirNewHTML = () => {
 
         json.data.forEach((obj) => {
             const url = obj.images.fixed_width.url;
-            laNada += `<img src="${url}" alt="gif" z-index=0 class="gifTraido">`;
+            laNada += `
+            <a href="${url}">
+                <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
+            </a>`;
         })
         dondeImprimir.innerHTML = laNada;
     }).catch((err) => {
@@ -85,18 +89,59 @@ buscar.addEventListener("input", updateValue);
 
 function updateValue(e) {
     let long = e.target.value;
+
+    // MOSTRAR EL CUADRO DE LAS OPCIONES SUGERIDAS
     if (long != 0) {
-        console.log("e");
         let sale = document.getElementById("muestraONo");
         if (sale.style.display === "none") {
             sale.style.display = "block";
           } else {
             sale.style.display = "none";
           }
-
     }
+    // USAR TENOR PARA SUGERIR EN LOS <A> LAS OPCIONES QUE VIENEN DESDE LA APP
+
+    function httpGetAsync(theUrl, callback)
+    {
+    // create the request object
+    var xmlHttp = new XMLHttpRequest();
+
+    // set the state change callback to capture when the response comes in
+    xmlHttp.onreadystatechange = function()
+    {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        {
+            callback(xmlHttp.responseText);
+        }
+    }
+
+    // open as a GET call, pass in the url and set async = True
+    xmlHttp.open("GET", theUrl, true);
+
+    // call send with no params as they were passed in on the url string
+    xmlHttp.send(null);
+
+    return;
+    }
+
+    // callback for search suggestion event
+    function tenorCallback_searchSuggestion(responsetext)
+    {
+        var response_objects = JSON.parse(responsetext);
+
+        predicted_words = response_objects["results"];
+
+        document.getElementById("sug_01").innerHTML = predicted_words[0];
+        document.getElementById("sug_02").innerHTML = predicted_words[1];
+        document.getElementById("sug_03").innerHTML = predicted_words[2];
+    }
+
+    // using default locale of en_US
+    var autoc_url =`https://api.tenor.com/v1/search_suggestions?q=${long}&key=${tenor}`;
+
+    // send search suggestion request
+    httpGetAsync(autoc_url,tenorCallback_searchSuggestion);
+
 }
-
-
 
 // FALTA: hacer que los resultados se muestren en dos columnas.... eso va a doler
