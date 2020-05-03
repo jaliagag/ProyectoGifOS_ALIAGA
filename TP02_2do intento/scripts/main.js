@@ -122,6 +122,4 @@ let vuelveLupaGris = () => {
 var algoEscribio = document.getElementById("cuadroBusqueda").addEventListener("focus", cambiaLupa, true);
 var ySeFue = document.getElementById("cuadroBusqueda").addEventListener("blur", vuelveLupaGris, true);
 
-
-
 // SESSION STORAGE

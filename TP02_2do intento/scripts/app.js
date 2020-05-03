@@ -39,9 +39,9 @@ let inicioGif = (id) => {
 
 // que todos los elementos con la clase "elGif" haga la función inicioGif
 elements = document.querySelectorAll('#gifsTende');
-console.log(elements);
+//console.log(elements);
 let sugArray = [elements];
-console.log(sugArray);
+//console.log(sugArray);
 
 sugArray.forEach(inicioGif);
 
@@ -49,7 +49,6 @@ sugArray.forEach(inicioGif);
 //##############################################################
 
 // BUSCADOR
-// FALTA: hacer el 
 
 var loEscrito = document.getElementById("haceBuscar");
 var buscar = document.getElementById("cuadroBusqueda");
@@ -65,8 +64,7 @@ loEscrito.addEventListener("submit", (e) => {
 let imprimirNewHTML = () => {
     let inputBusqueda = localStorage.getItem("searchTerm");
     let busqueda = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${inputBusqueda}&limit=20`;
-    console.log(busqueda);
-    //console.log(busqueda);
+
     let dondeImprimir = document.getElementById("resultadoBusqueda");
     fetch(busqueda).then((res) => {
         return res.json();
@@ -76,7 +74,6 @@ let imprimirNewHTML = () => {
         json.data.forEach((obj) => {
             const url = obj.images.fixed_width.url;
             laNada += `<img src="${url}" alt="gif" z-index=0 class="gifTraido">`;
-            // determinar la anchura: widht="200"
         })
         dondeImprimir.innerHTML = laNada;
     }).catch((err) => {
@@ -84,11 +81,22 @@ let imprimirNewHTML = () => {
     });
 };
 
+buscar.addEventListener("input", updateValue);
 
-    //window.open(aleatorio);
-    
+function updateValue(e) {
+    let long = e.target.value;
+    if (long != 0) {
+        console.log("e");
+        let sale = document.getElementById("muestraONo");
+        if (sale.style.display === "none") {
+            sale.style.display = "block";
+          } else {
+            sale.style.display = "none";
+          }
+
+    }
+}
 
 
 
-// función para abrir pestaña con nuevo resultado de búsqueda
-// puede ser sugerido o input del usuario
+// FALTA: hacer que los resultados se muestren en dos columnas.... eso va a doler

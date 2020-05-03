@@ -180,7 +180,8 @@ a {
   flex-direction: column; }
 
 .sugerencias {
-  margin-top: 64px; }
+  margin-top: 64px;
+  margin-bottom: 1em; }
 
 .sugText {
   width: 1200px;
@@ -262,7 +263,8 @@ a {
   margin-bottom: 1em;
   width: 290px;
   height: 290px;
-  overflow: hidden; }
+  overflow: hidden;
+  border: 1px solid #110038; }
 
 .tendText {
   width: 1200px;
