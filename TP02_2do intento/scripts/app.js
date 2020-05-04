@@ -53,9 +53,7 @@ sugArray.forEach(inicioGif);
 
 var loEscrito = document.getElementById("haceBuscar");
 var buscar = document.getElementById("cuadroBusqueda");
-/* var sugerencia01 = document.getElementById("sug_01").value;
-var sugerencia02 = document.getElementById("sug_02").value;
-var sugerencia03 = document.getElementById("sug_03").value; */
+
 
 loEscrito.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -63,31 +61,7 @@ loEscrito.addEventListener("submit", (e) => {
     busquedaResultadosArr.unshift(finalmenteElInput);
     window.localStorage.setItem("searchTerm", finalmenteElInput);
     window.location.href = "busq.html";
-});  
-
-/* sugerencia01.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let finalmenteElInput = buscar.value;
-    busquedaResultadosArr.unshift(finalmenteElInput);
-    window.localStorage.setItem("searchTerm", finalmenteElInput);
-    window.location.href = "busq.html";
-});  
-
-sugerencia02.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let finalmenteElInput = buscar.value;
-    busquedaResultadosArr.unshift(finalmenteElInput);
-    window.localStorage.setItem("searchTerm", finalmenteElInput);
-    window.location.href = "busq.html";
-});  
-
-sugerencia03.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let finalmenteElInput = buscar.value;
-    busquedaResultadosArr.unshift(finalmenteElInput);
-    window.localStorage.setItem("searchTerm", finalmenteElInput);
-    window.location.href = "busq.html";
-});  */ 
+});
 
 let imprimirNewHTML = () => {
     let inputBusqueda = localStorage.getItem("searchTerm");
@@ -164,6 +138,29 @@ function updateValue(e) {
         document.getElementById("sug_01").innerHTML = predicted_words[0];
         document.getElementById("sug_02").innerHTML = predicted_words[1];
         document.getElementById("sug_03").innerHTML = predicted_words[2];
+
+        var sugerencia01 = document.getElementById("sug_01");
+        var sugerencia02 = document.getElementById("sug_02");
+        var sugerencia03 = document.getElementById("sug_03");
+
+        sugerencia01.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.localStorage.setItem("searchTerm", predicted_words[0]);
+            window.location.href = "busq.html"; 
+        });
+
+        sugerencia02.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.localStorage.setItem("searchTerm", predicted_words[1]);
+            window.location.href = "busq.html"; 
+        });
+
+        sugerencia31.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.localStorage.setItem("searchTerm", predicted_words[2]);
+            window.location.href = "busq.html"; 
+        });
+
     }
 
     // using default locale of en_US
@@ -171,9 +168,6 @@ function updateValue(e) {
 
     // send search suggestion request
     httpGetAsync(autoc_url,tenorCallback_searchSuggestion);
-
-
-
 }
 
 // FALTA: hacer que los resultados se muestren en dos columnas.... eso va a doler
