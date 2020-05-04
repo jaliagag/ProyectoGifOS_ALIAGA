@@ -155,7 +155,7 @@ function updateValue(e) {
             window.location.href = "busq.html"; 
         });
 
-        sugerencia31.addEventListener("click", (e) => {
+        sugerencia03.addEventListener("click", (e) => {
             e.preventDefault();
             window.localStorage.setItem("searchTerm", predicted_words[2]);
             window.location.href = "busq.html"; 
