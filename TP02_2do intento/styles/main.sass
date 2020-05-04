@@ -196,9 +196,29 @@ a
     display: flex
     flex-direction: column
 
+.laRecalcada
+    max-width: 390px
+    max-height: 390px
+    overflow: hidden
+    position: relative
+    cursor: pointer
+    margin-bottom: 1em
 
-    
-    
+.laRecalcada:hover
+    border: 1px solid #110038  
+
+.laRecalcada:hover div
+    visibility: visible
+
+.conchaDLL
+    width: 100%
+    height: 24px
+    background-image: linear-gradient(270deg, #F7C9F3 0%, #4180F6 100%)
+    position: absolute
+    bottom: 0px
+    color: white
+
+    visibility: hidden
 
 // SUGERENCIAS
 
@@ -241,11 +261,10 @@ a
     width: 280px
     height: 24px
     display: flex
-    color: #FFFFFF 100%
+    color: #FFFFFF
     font-size: 14px
     justify-content: space-between
     align-items: center
-
 
 .elGif
     width: 280px
@@ -260,7 +279,7 @@ a
     display: flex
     flex-direction: row
     align-items: flex-end
-    z-index: 1
+    z-index: 100
 
 .sugBorder:hover
     border: 1px dotted #110038
@@ -284,11 +303,13 @@ a
     column-gap: 1em
 
 .gifTraido
-    margin-bottom: 1em
+    z-index: 0
     width: 290px
     height: 290px
     overflow: hidden
     border: 1px solid #110038
+    display: block
+    position: relative
 
 .gifTraido:hover
     cursor: pointer

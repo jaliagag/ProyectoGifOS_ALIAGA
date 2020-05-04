@@ -31,11 +31,7 @@ let inicioGif = (id) => {
     }).catch((err) => {
         console.log(err.message);
     })
-    /* let agregarCuadrito = `
-        <div class="sugBorde">
-            <div class="cajitaMas"><span>Ver más...</span></div>
-        </div>`
-    resultsEl.innerHTML += agregarCuadrito; */
+
 }
 
 // que todos los elementos con la clase "elGif" haga la función inicioGif
@@ -50,6 +46,11 @@ sugArray.forEach(inicioGif);
 //##############################################################
 
 // BUSCADOR
+
+let abreteSesamo = (donde) => {
+    console.log(donde);
+    window.location.href = donde;
+}
 
 var loEscrito = document.getElementById("haceBuscar");
 var buscar = document.getElementById("cuadroBusqueda");
@@ -76,9 +77,12 @@ let imprimirNewHTML = () => {
         json.data.forEach((obj) => {
             const url = obj.images.fixed_width.url;
             laNada += `
-            <a href="${url}">
-                <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
-            </a>`;
+            <div class="laRecalcada" onclick="abreteSesamo(${url})">
+                <a href="${url}">
+                    <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
+                    <div class="conchaDLL">#</div>
+                </a>
+            </div>`;
         })
         dondeImprimir.innerHTML = laNada;
     }).catch((err) => {
