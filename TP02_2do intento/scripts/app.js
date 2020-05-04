@@ -76,11 +76,21 @@ let imprimirNewHTML = () => {
 
         json.data.forEach((obj) => {
             const url = obj.images.fixed_width.url;
+            const tags = obj.title;
+            const chauGif = tags.includes("GIF");
+            let finalTag = "";
+
+            if (chauGif == false) {
+                finalTag = tags;
+            } else {
+                finalTag = tags.replace("GIF","");
+            }
+            console.log(finalTag)
             laNada += `
             <div class="laRecalcada" onclick="abreteSesamo(${url})">
                 <a href="${url}">
                     <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
-                    <div class="conchaDLL">#</div>
+                    <div class="conchaDLL">#${finalTag}</div>
                 </a>
             </div>`;
         })
