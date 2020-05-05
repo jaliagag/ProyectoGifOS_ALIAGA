@@ -5,18 +5,6 @@ const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}&limit=
 //const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}&limit=1&tag=${laTag}`;
 //const resultsEl = document.getElementById("gifsTende");
 
-// Crear un array que quede en localStorage y que al que pueda acceder la 
-// página busq.html
-
-var busquedaResultadosArr = [];
-    // máximo número de resultados de búsqueda que voy a guardar Y mostrar
-    // usar UNSHIFT para agregar al principio
-busquedaResultadosArr.length = 7;
-    // guardar en memoria el array
-//window.localStorage.setItem("0", busquedaResultadosArr[0]);
-
-//##############################################################
-
 // ingresar gif aleatorio
 
 let inicioGif = (id) => {
@@ -48,32 +36,41 @@ sugArray.forEach(inicioGif);
 // BUSCADOR
 
 let abreteSesamo = (donde) => {
-    console.log(donde);
     window.location.href = donde;
 }
 
 var loEscrito = document.getElementById("haceBuscar");
 var buscar = document.getElementById("cuadroBusqueda");
 
+// ELEMENTITOS GUARDADOS
+
+let saved = document.getElementById("guardado"); // donde se van a imprimir los cuadros de búsqueda
+var arrayardo = []; // array vacío
+arrayardo.length = 7; // máximo número de elementos
+window.localStorage.setItem("previousSearch", JSON.stringify(arrayardo)); // guardo el array en LS
+
+// ELEMENTITOS GUARDADOS
 
 loEscrito.addEventListener("submit", (e) => {
     e.preventDefault();
     let finalmenteElInput = buscar.value;
-    busquedaResultadosArr.unshift(finalmenteElInput);
     window.localStorage.setItem("searchTerm", finalmenteElInput);
+    //window.localStorage.setItem(arrayardo[0], finalmenteElInput);
+    //arrayardo.unshift(finalmenteElInput);
+    //window.localStorage.setItem(arrayardo, JSON.stringify([finalmenteElInput]));
     window.location.href = "busq.html";
 });
 
 let imprimirNewHTML = () => {
     let inputBusqueda = localStorage.getItem("searchTerm");
+    //arrayardo.unshift(JSON.stringify("inputBusqueda"));
     let busqueda = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${inputBusqueda}&limit=20`;
-
+    
     let dondeImprimir = document.getElementById("resultadoBusqueda");
     fetch(busqueda).then((res) => {
         return res.json();
     }).then((json) => {
         let laNada = "";
-
         json.data.forEach((obj) => {
             const url = obj.images.fixed_width.url;
             const tags = obj.title;
@@ -85,12 +82,11 @@ let imprimirNewHTML = () => {
             } else {
                 finalTag = tags.replace("GIF","");
             }
-            console.log(finalTag)
             laNada += `
             <div class="laRecalcada" onclick="abreteSesamo(${url})">
                 <a href="${url}">
                     <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
-                    <div class="conchaDLL">#${finalTag}</div>
+                    <div class="chDLL">#${finalTag}</div>
                 </a>
             </div>`;
         })
@@ -98,6 +94,7 @@ let imprimirNewHTML = () => {
     }).catch((err) => {
         console.log(err.message);
     });
+    arrayardo.push(inputBusqueda);
 };
 
 // muestra y busca sugerencias
