@@ -44,20 +44,53 @@ var buscar = document.getElementById("cuadroBusqueda");
 
 // ELEMENTITOS GUARDADOS
 
-let saved = document.getElementById("guardado"); // donde se van a imprimir los cuadros de búsqueda
-var arrayardo = []; // array vacío
-arrayardo.length = 7; // máximo número de elementos
-window.localStorage.setItem("previousSearch", JSON.stringify(arrayardo)); // guardo el array en LS
+let dameBusq = () => {
+    if ( localStorage.getItem("busquedasGuardadas") != null) {
+        var busquedasGuardadas  = localStorage.getItem("busquedasGuardadas").split(",");
+    } else {
+        var busquedasGuardadas = [];
+    }
+    return busquedasGuardadas;
+}
+
+let guardame = (unaBusq) => {
+	let busquedasGuardadas = dameBusq();
+
+	/* let sectionWidth = document.getElementById("").offsetWidth;
+	let wrapperWidth = document.getElementById("").offsetWidth; */
+/* 	if ((wrapperWidth + 200) >= sectionWidth) {
+		busquedasGuardadas.pop();
+	} */
+	busquedasGuardadas.unshift(unaBusq);
+	localStorage.setItem("busquedasGuardadas", busquedasGuardadas);
+	finalmenteLasBusquedas();
+}
+
+let finalmenteLasBusquedas = () => {
+    console.log("llego3")
+	if (dameBusq() != null) {
+		let busquedasGuardadas = dameBusq();
+		let cuadritos = "";
+		busquedasGuardadas.forEach(function(item) {
+			// dónde lo guardo
+			cuadritos += `<a href="busq.html" class="cuadritos" data-term="${item}" onclick="window.localStorage.setItem("searchTerm", this)">
+			<span class="border">#${item}</span>
+			</a>`;
+		})
+		document.getElementById("guardado").innerHTML = cuadritos;
+	}
+}
+
+finalmenteLasBusquedas();
 
 // ELEMENTITOS GUARDADOS
+
+
 
 loEscrito.addEventListener("submit", (e) => {
     e.preventDefault();
     let finalmenteElInput = buscar.value;
     window.localStorage.setItem("searchTerm", finalmenteElInput);
-    //window.localStorage.setItem(arrayardo[0], finalmenteElInput);
-    //arrayardo.unshift(finalmenteElInput);
-    //window.localStorage.setItem(arrayardo, JSON.stringify([finalmenteElInput]));
     window.location.href = "busq.html";
 });
 
@@ -94,7 +127,7 @@ let imprimirNewHTML = () => {
     }).catch((err) => {
         console.log(err.message);
     });
-    arrayardo.push(inputBusqueda);
+    //arrayardo.push(inputBusqueda);
 };
 
 // muestra y busca sugerencias
