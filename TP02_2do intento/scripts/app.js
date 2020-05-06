@@ -1,34 +1,5 @@
 const apikey = "dkElzr6SJfgkAbeHk3kGa70yrOiwrdcP";
 const tenor = "RZZXC4BYAXIL";
-const laTag ="homer"
-const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}&limit=1`;
-//const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}&limit=1&tag=${laTag}`;
-//const resultsEl = document.getElementById("gifsTende");
-
-// ingresar gif aleatorio
-
-let inicioGif = (id) => {
-    fetch(aleatorio).then((res)=>{
-        return res.json();
-    }).then((json) => {
-        let resultsHTML = json.data.image_original_url;
-        let asddf = "";
-        asddf += `<img src="${resultsHTML}" alt="gif aleatorio" z-index=0>`
-        id.innerHTML = asddf;
-        // agregar el cuadro de ver más acá
-    }).catch((err) => {
-        console.log(err.message);
-    })
-
-}
-
-// que todos los elementos con la clase "elGif" haga la función inicioGif
-elements = document.querySelectorAll('#gifsTende');
-//console.log(elements);
-let sugArray = [elements];
-//console.log(sugArray);
-
-sugArray.forEach(inicioGif);
 
 //##############################################################
 //##############################################################
@@ -43,7 +14,7 @@ var loEscrito = document.getElementById("haceBuscar");
 var buscar = document.getElementById("cuadroBusqueda");
 
 // ELEMENTITOS GUARDADOS
-
+/*
 let dameBusq = () => {
     if ( localStorage.getItem("busquedasGuardadas") != null) {
         var busquedasGuardadas  = localStorage.getItem("busquedasGuardadas").split(",");
@@ -56,11 +27,11 @@ let dameBusq = () => {
 let guardame = (unaBusq) => {
 	let busquedasGuardadas = dameBusq();
 
-	/* let sectionWidth = document.getElementById("").offsetWidth;
-	let wrapperWidth = document.getElementById("").offsetWidth; */
-/* 	if ((wrapperWidth + 200) >= sectionWidth) {
+	let sectionWidth = document.getElementById("").offsetWidth;
+	let wrapperWidth = document.getElementById("").offsetWidth; 
+ 	if ((wrapperWidth + 200) >= sectionWidth) {
 		busquedasGuardadas.pop();
-	} */
+	} 
 	busquedasGuardadas.unshift(unaBusq);
 	localStorage.setItem("busquedasGuardadas", busquedasGuardadas);
 	finalmenteLasBusquedas();
@@ -81,7 +52,7 @@ let finalmenteLasBusquedas = () => {
 	}
 }
 
-finalmenteLasBusquedas();
+finalmenteLasBusquedas();*/
 
 // ELEMENTITOS GUARDADOS
 
@@ -215,3 +186,25 @@ function updateValue(e) {
 }
 
 // FALTA: hacer que los resultados se muestren en dos columnas.... eso va a doler
+// TENDENCIAS
+
+/* const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}`;
+const aca = document.getElementById("asdf")
+// var aca = document.getElementsByClassName("contenedor"); // doesnt work
+
+
+fetch(aleatorio).then((res) => {
+    return res.json();
+}).then((json) => {
+    let resultsHTML = "" // acá lo vamos a meter
+    var url = json.data.images.original.url
+    resultsHTML += `<img src="${url}" alt="random gif not loaded" />`
+    
+    aca.innerHTML = resultsHTML;
+    //console.log(json.data.images.original.url);
+    //aca.innerHTML = json.data.images.original.url
+    console.log(json.data)
+}).catch ((err) => {
+    console.log(err.message);
+}) */
+
