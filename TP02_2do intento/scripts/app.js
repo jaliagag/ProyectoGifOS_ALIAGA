@@ -219,7 +219,9 @@ fetch(tendenciasGiphy).then((res) => {
 
 // SUGERENCIAS
 
-/* const sugerenciasGiphy = `https://api.giphy.com/v1/gifs/categories?api_key=${apikey}`;
+const sugerenciasGiphy = `https://api.giphy.com/v1/gifs/categories?api_key=${apikey}&limit=4`;
+
+//setTimeout(function(){ alert("Hello"); }, 3000);
 
 let cargarSugerencias = () => {
     fetch(sugerenciasGiphy).then((res) => {
@@ -227,19 +229,21 @@ let cargarSugerencias = () => {
     }).then((json) => {
         let printCat = document.getElementById("row");
     
-        console.log(json)
+        //console.log(json)
         let miraPadre = "";
         json.data.forEach((obj) => {
-            const url = obj.images.fixed_width.url;
-            const tags = obj.title;
-            const chauGif = tags.includes("GIF");
+            const url = obj.gif.url;
+            //console.log(url);
+            const tags = obj.gif.tags;
+            //console.log(tags)
+            /* const chauGif = tags.includes("GIF");
             let finalTag = "";
     
             if (chauGif == false) {
                 finalTag = tags;
             } else {
                 finalTag = tags.replace("GIF","");
-            }
+            } */
             miraPadre += `
             <div class="gifBox">
                 <div class="arribita">#<span id="elHastag"></span><a href="#"><img src="assets/close.svg" alt="X"></a></div>
@@ -257,4 +261,4 @@ let cargarSugerencias = () => {
     });
 }
 
-cargarSugerencias(); */
+cargarSugerencias();
