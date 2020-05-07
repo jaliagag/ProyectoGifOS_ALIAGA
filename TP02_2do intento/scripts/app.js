@@ -227,7 +227,7 @@ let cargarSugerencias = () => {
     fetch(sugerenciasGiphy).then((res) => {
         return res.json()
     }).then((json) => {
-        let printCat = document.getElementById("row");
+        let printCat = document.getElementById("cuatroFantasticos");
     
         //console.log(json)
         let miraPadre = "";
@@ -235,18 +235,20 @@ let cargarSugerencias = () => {
             const url = obj.gif.url;
             //console.log(url);
             const tags = obj.gif.tags;
-            //console.log(tags)
-            /* const chauGif = tags.includes("GIF");
-            let finalTag = "";
-    
-            if (chauGif == false) {
+                console.log(tags)
+            /* let muchasTags = tags.length;
+                //console.log(chauGif);*/
+            let finalTag = ""; 
+            //let esGrande = 4;
+
+            /* if (muchasTags <= 3) {
                 finalTag = tags;
             } else {
-                finalTag = tags.replace("GIF","");
+                for (i = 0; muchasTags > 3; i++)
             } */
             miraPadre += `
             <div class="gifBox">
-                <div class="arribita">#<span id="elHastag"></span><a href="#"><img src="assets/close.svg" alt="X"></a></div>
+                <div class="arribita">#<span id="elHastag">${tags}</span><a href="#"><img src="assets/close.svg" alt="X"></a></div>
                 <div class="elGif" id="gifsTende">
                     <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
                     <div class="sugBorde">
