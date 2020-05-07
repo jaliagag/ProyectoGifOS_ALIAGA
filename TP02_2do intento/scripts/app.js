@@ -6,13 +6,6 @@ const tenor = "RZZXC4BYAXIL";
 
 // BUSCADOR
 
-let abreteSesamo = (donde) => {
-    window.location.href = donde;
-}
-
-var loEscrito = document.getElementById("haceBuscar");
-var buscar = document.getElementById("cuadroBusqueda");
-
 // ELEMENTITOS GUARDADOS
 /*
 let dameBusq = () => {
@@ -56,7 +49,12 @@ finalmenteLasBusquedas();*/
 
 // ELEMENTITOS GUARDADOS
 
+let abreteSesamo = (donde) => {
+    window.location.href = donde;
+}
 
+var loEscrito = document.getElementById("haceBuscar");
+var buscar = document.getElementById("cuadroBusqueda");
 
 loEscrito.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -188,23 +186,75 @@ function updateValue(e) {
 // FALTA: hacer que los resultados se muestren en dos columnas.... eso va a doler
 // TENDENCIAS
 
-/* const aleatorio = `https://api.giphy.com/v1/gifs/random?api_key=${apikey}`;
-const aca = document.getElementById("asdf")
-// var aca = document.getElementsByClassName("contenedor"); // doesnt work
+const tendenciasGiphy = `https://api.giphy.com/v1/gifs/trending?api_key=${apikey}&limit=20`;
 
-
-fetch(aleatorio).then((res) => {
-    return res.json();
+fetch(tendenciasGiphy).then((res) => {
+    return res.json()
 }).then((json) => {
-    let resultsHTML = "" // acá lo vamos a meter
-    var url = json.data.images.original.url
-    resultsHTML += `<img src="${url}" alt="random gif not loaded" />`
-    
-    aca.innerHTML = resultsHTML;
-    //console.log(json.data.images.original.url);
-    //aca.innerHTML = json.data.images.original.url
-    console.log(json.data)
-}).catch ((err) => {
-    console.log(err.message);
-}) */
+    let printTrend = document.getElementById("mostrarAleatorios");
 
+    //console.log(json)
+    let laNada = "";
+    json.data.forEach((obj) => {
+        const url = obj.images.fixed_width.url;
+        const tags = obj.title;
+        const chauGif = tags.includes("GIF");
+        let finalTag = "";
+
+        if (chauGif == false) {
+            finalTag = tags;
+        } else {
+            finalTag = tags.replace("GIF","");
+        }
+        laNada += `
+        <div class="laRecalcada" onclick="abreteSesamo(${url})">
+            <a href="${url}">
+                <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
+                <div class="chDLL">#${finalTag}</div>
+            </a>
+        </div>`;
+    })
+    printTrend.innerHTML = laNada;
+})
+
+// SUGERENCIAS
+
+/* const sugerenciasGiphy = `https://api.giphy.com/v1/gifs/categories?api_key=${apikey}`;
+
+let cargarSugerencias = () => {
+    fetch(sugerenciasGiphy).then((res) => {
+        return res.json()
+    }).then((json) => {
+        let printCat = document.getElementById("row");
+    
+        console.log(json)
+        let miraPadre = "";
+        json.data.forEach((obj) => {
+            const url = obj.images.fixed_width.url;
+            const tags = obj.title;
+            const chauGif = tags.includes("GIF");
+            let finalTag = "";
+    
+            if (chauGif == false) {
+                finalTag = tags;
+            } else {
+                finalTag = tags.replace("GIF","");
+            }
+            miraPadre += `
+            <div class="gifBox">
+                <div class="arribita">#<span id="elHastag"></span><a href="#"><img src="assets/close.svg" alt="X"></a></div>
+                <div class="elGif" id="gifsTende">
+                    <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
+                    <div class="sugBorde">
+                        <div class="cajitaMas"><span>Ver más...</span></div>
+                    </div>
+                </div>
+            </div>`;
+        })
+        printCat.innerHTML = miraPadre;
+    }).catch((err) => {
+        console.log(err.message);
+    });
+}
+
+cargarSugerencias(); */
