@@ -344,3 +344,98 @@ a
     grid-template-columns: auto auto auto auto
     margin-top: 1em
     margin-bottom: 1em
+
+// MIS GIFS
+
+.gifGuardados
+    display: flex
+    justify-content: center
+    //flex-direction: column
+
+// CREAR GIF
+
+.crearWrapper
+    display: flex
+    padding-top: 15px
+
+.crearLogo
+    margin-left: 15px
+
+.menuCrear 
+    margin-top: 30px
+    section
+        display: flex
+        justify-content: center
+        //flex-direction: column
+
+.crearUno
+    width: 684px
+    height: 386px
+    background: #E6E6E6
+    box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF    
+
+.barraArriba
+    height: 24px
+    font-family: 'Chakra Petch Bold', sans-serif
+    padding-top: 5px
+    padding-left: 10px
+    margin: 1px
+
+.crearMainTextBody
+    padding: 25px
+
+.titleStart
+    margin-left: 15px
+    font-family: 'Chakra PetchBold', sans-serif
+    font-size: 16px
+    color: #110038
+    letter-spacing: 0
+    line-height: 22px
+
+.mainP
+    padding-left: 50px
+
+.listaOrdenada
+    counter-reset: list
+    padding-left: 50px
+
+.listaOrdenada > li
+    list-style: none
+    margin-bottom: 5px
+
+.listaOrdenada > li::before
+    font-weight: bold
+    content: counter(list) ") "
+    counter-increment: list
+
+.uReady
+    padding-left: 50px
+
+.oneFWord
+    font-weight: bold
+    font-style: italic
+
+.lesBotons
+    float: right
+    margin-right: 50px
+    margin-top: -15px
+
+.crearbtn
+    width: 144px
+    height: 36px
+
+.crearbtn.cancelar
+    background: #FFF4FD
+    border: 1px solid #110038
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF
+
+.crearbtn.cancelar:hover
+    cursor: pointer
+
+.crearbtn.comenzar
+    background: #F7C9F3
+    border: 1px solid #110038
+    box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF
+
+.crearbtn.comenzar:hover
+    cursor: pointer
