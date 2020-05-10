@@ -339,10 +339,9 @@ a {
   margin-left: 15px; }
 
 .menuCrear {
-  margin-top: 30px; }
-  .menuCrear section {
-    display: flex;
-    justify-content: center; }
+  margin-top: 30px;
+  display: flex;
+  justify-content: center; }
 
 .crearUno {
   width: 684px;
@@ -415,5 +414,50 @@ a {
 
 .crearbtn.comenzar:hover {
   cursor: pointer; }
+
+#section32 {
+  display: none; }
+
+.crearDos {
+  width: 860px;
+  height: 548px;
+  background: #E6E6E6;
+  box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF; }
+
+.volverPaTras {
+  float: right;
+  margin-right: 7px;
+  cursor: pointer; }
+
+.cuadroCaptura {
+  width: 832px;
+  height: 434px;
+  border: 1px solid;
+  margin: auto;
+  margin-top: 5px; }
+
+.startCapturaBtn {
+  display: flex;
+  align-content: center;
+  justify-content: flex-end; }
+
+.camaraFotoBtn {
+  width: 36px;
+  height: 36px;
+  background: #F7C9F3;
+  border: 1px solid #110038;
+  box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+  margin-top: 15px;
+  cursor: pointer; }
+
+.capturarBtn {
+  width: 144px;
+  height: 36px;
+  background: #F7C9F3;
+  border: 1px solid #110038;
+  box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-right: 25px; }
 
 /*# sourceMappingURL=main.css.map */

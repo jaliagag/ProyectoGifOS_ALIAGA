@@ -14,14 +14,14 @@
     </div>
     <div class="withinBody">
         <div class="crearWrapper">
-            <img src="assets/arrow.svg" alt="flechaAtras">
+            <a href="index.html"><img src="assets/arrow.svg" alt="flechaAtras"></a>
             <div class="crearLogo">
                 <a href="index.html"><img src="assets/gifOF_logo.png" alt="logo_main" id="logo_dia"></a>
                 <a href="index.html"><img src="assets/gifOF_logo_dark.png" alt="logo_main" id="logo_noche"></a>
             </div>
         </div>
         <div class="menuCrear">
-            <section>
+            <section id="section31">
                 <div class="crearUno">
                     <div class="barraArriba">
                         <span>Crear Guifos</span>
@@ -41,16 +41,33 @@
                         </p>
                     </div>
                     <div class="lesBotons">
-                        <button class="crearbtn cancelar">Cancelar</button>
-                        <button class="crearbtn comenzar">Comenzar</button>
+                        <button class="crearbtn cancelar" onclick="location.href='index.html'">Cancelar</button>
+                        <button class="crearbtn comenzar" id="letTheGamesBegin" onclick="holis()">Comenzar</button>
                     </div>
                 </div>
             </section>
 
-            <section></section>
-            <section></section>
-            <section></section>
-            <section></section>
+            <section id="section32">
+                <div class="crearDos">
+                    <div class="barraArriba">
+                        <img src="assets/close.svg" alt="X" class="volverPaTras" onclick="arrepentido()">
+                        <span>Un chequeo antes de empezar</span>
+                    </div>
+                    <div id="captura" class="cuadroCaptura">
+                        <video id="cuadroVideo">
+
+                        </video>
+                    </div>
+                    <div class="startCapturaBtn">
+                        <img src="assets/camera.svg" alt="camara" class="camaraFotoBtn" id="camaraFotoBtn">
+                        <button class="capturarBtn" id="campturarBtn">Capturar</button>
+                        <button class="capturarBtn" id="btn-stop-recording">STOP</button>
+                    </div>
+                </div>
+            </section>
+            <section id="section33"></section>
+            <section id="section34"></section>
+            <section id="section35"></section>
         </div>
 
 
@@ -67,7 +84,7 @@
         
     </div>
 
-    <script src="scripts/main.js"></script>
-    <script src="scripts/app.js"></script>
+    <script src="scripts/creation.js"></script>
+    <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
 </body>
 </html>
