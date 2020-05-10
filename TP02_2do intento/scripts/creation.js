@@ -68,9 +68,11 @@ let holis = () => {
 let arrepentido = () => {
     document.getElementById("section31").style.display = "block";
     document.getElementById("section32").style.display = "none";
+    //secondScreen();
 };
-
+//////////////////////////////////////////
 // VIDEO
+//////////////////////////////////////////
 
 //navigator.mediaDevices.getUserMedia(constraints)
 //.then(function(stream) {
@@ -83,15 +85,15 @@ let arrepentido = () => {
 // acamica
 
 /* let getStreamAndRecord = () => {
-    nagigator.mediaDevices.getUserMedia({
-        audio:false,
-        video: {
-            height: { max: 480 }
-        }
-    }).the(function(stream) {
-        vide.srcObject = stream;
-        video.play()
-    })
+  nagigator.mediaDevices.getUserMedia({
+    audio:false,
+    video: {
+      height: { max: 480 }
+    }
+  }).then(function(stream) {
+    video.srcObject = stream;
+    video.play()
+  })
 } */
 /* 
 let stream = await navigator.mediaDevices.getUserMedia({video: true, audio: true});
@@ -114,7 +116,7 @@ invokeSaveAsDialog(blob); */
   //document.querySelector("video").src = URL.createObjectURL(stream);
   //2
   // const mediaStream = new MediaStream();
-  //const video = document.querySelector("video");
+  // const video = document.querySelector("video");
   //video.srcObject = mediaStream;
   //3
   video.srcObject = stream;
@@ -184,22 +186,25 @@ var mediaConstraints = { video: true, audio: true}
 
 navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback) */
 
+// github capture gif doc
+
 var videoRec = document.getElementById("cuadroVideo");
 
 function captureCamera(callback) {
     navigator.mediaDevices.getUserMedia({ video: true }).then(function(camera) {
-        callback(camera);
+      callback(camera);
     }).catch(function(error) {
-        alert('Unable to capture your camera. Please check console logs.');
-        console.error(error);
-    });
+            
+      alert('Unable to capture your camera. Please check console logs.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      console.error(error);
+  });
 }
 
 function stopRecordingCallback() {
     //document.querySelector('h1').innerHTML = 'Gif recording stopped: ' + bytesToSize(recorder.getBlob().size);
     videoRec.src = URL.createObjectURL(recorder.getBlob());
     recorder.camera.stop();
-    recorder.destroy();
+    //recorder.destroy();
     recorder = null;
 }
 
