@@ -68,7 +68,6 @@ let holis = () => {
 let arrepentido = () => {
     document.getElementById("section31").style.display = "block";
     document.getElementById("section32").style.display = "none";
-    secondScreen();
 };
 
 // VIDEO
@@ -197,7 +196,7 @@ function captureCamera(callback) {
 }
 
 function stopRecordingCallback() {
-    document.querySelector('h1').innerHTML = 'Gif recording stopped: ' + bytesToSize(recorder.getBlob().size);
+    //document.querySelector('h1').innerHTML = 'Gif recording stopped: ' + bytesToSize(recorder.getBlob().size);
     videoRec.src = URL.createObjectURL(recorder.getBlob());
     recorder.camera.stop();
     recorder.destroy();
@@ -207,35 +206,34 @@ function stopRecordingCallback() {
 var recorder; // globally accessible
 
 let secondScreen = () => {
-  document.getElementById("bcampturarBtn").onclick = function() {
-      this.disabled = true;
-      captureCamera(function(camera) {
-          document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
-          recorder = RecordRTC(camera, {
-              type: 'gif',
-              frameRate: 1,
-              quality: 10,
-              width: 360,
-              hidden: 240,
-              onGifRecordingStarted: function() {
-                  document.querySelector('h1').innerHTML = 'Gif recording started.';
-              },
-              onGifPreview: function(gifURL) {
-                videoRec.src = gifURL;
-              }
-          });
-  
-          recorder.startRecording();
-  
-          // release camera on stopRecording
-          recorder.camera = camera;
-  
-          document.getElementById('btn-stop-recording').disabled = false;
-      });
-  };
-}
-
-document.getElementById('btn-stop-recording').onclick = function() {
-    this.disabled = true;
-    recorder.stopRecording(stopRecordingCallback);
+  //this.disabled = true;
+  captureCamera(function(camera) {
+    //document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
+    recorder = RecordRTC(camera, {
+      type: 'gif',
+      frameRate: 1,
+      quality: 10,
+      width: 360,
+      hidden: 240,
+      onGifRecordingStarted: function() {
+        //document.querySelector('h1').innerHTML = 'Gif recording started.';
+      },
+      onGifPreview: function(gifURL) {
+        videoRec.src = gifURL;
+      }
+    });
+          
+    recorder.startRecording();
+          
+    // release camera on stopRecording
+    recorder.camera = camera;
+          
+    document.getElementById('btn-stop-recording').disabled = false;
+  });
 };
+      
+document.getElementById('btn-stop-recording').onclick = function() {
+  this.disabled = true;
+  recorder.stopRecording(stopRecordingCallback);
+};
+document.getElementById("campturarBtn").onclick = secondScreen()
