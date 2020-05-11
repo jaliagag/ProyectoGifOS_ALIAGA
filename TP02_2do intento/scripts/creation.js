@@ -62,13 +62,11 @@ var iniciar = document.getElementById("letTheGamesBegin");
 let holis = () => {
     document.getElementById("section31").style.display = "none";
     document.getElementById("section32").style.display = "block";
-    //start();
 };
 
 let arrepentido = () => {
     document.getElementById("section31").style.display = "block";
     document.getElementById("section32").style.display = "none";
-    //secondScreen();
 };
 //////////////////////////////////////////
 // VIDEO
@@ -184,22 +182,33 @@ function errorCallback(error) {
 
 var mediaConstraints = { video: true, audio: true}
 
-navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback) */
+navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback); */
 
 // github capture gif doc
 
 var videoRec = document.getElementById("cuadroVideo");
 
+let getStreamAndRecord = () => {
+  nagigator.mediaDevices.getUserMedia({
+    audio:false,
+    video: {
+      height: { max: 480 }
+    }
+  }).then(function(stream) {
+    videoRec.srcObject = stream;
+    videoRec.play()
+  })
+}
+/*
 function captureCamera(callback) {
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(camera) {
-      callback(camera);
-    }).catch(function(error) {
-            
-      alert('Unable to capture your camera. Please check console logs.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-      console.error(error);
+  navigator.mediaDevices.getUserMedia({ video: true }).then(function(camera) {
+    callback(camera);
+  }).catch(function(error) {          
+    alert('Unable to capture your camera. Please check console logs.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    console.error(error);
   });
 }
-
+ 
 function stopRecordingCallback() {
     //document.querySelector('h1').innerHTML = 'Gif recording stopped: ' + bytesToSize(recorder.getBlob().size);
     videoRec.src = URL.createObjectURL(recorder.getBlob());
@@ -208,10 +217,11 @@ function stopRecordingCallback() {
     recorder = null;
 }
 
+
 var recorder; // globally accessible
 
-let secondScreen = () => {
-  //this.disabled = true;
+document.getElementById("campturarBtn").onclick = function () {
+  this.disabled = true;
   captureCamera(function(camera) {
     //document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
     recorder = RecordRTC(camera, {
@@ -236,9 +246,22 @@ let secondScreen = () => {
     document.getElementById('btn-stop-recording').disabled = false;
   });
 };
-      
+     
 document.getElementById('btn-stop-recording').onclick = function() {
   this.disabled = true;
   recorder.stopRecording(stopRecordingCallback);
 };
-document.getElementById("campturarBtn").onclick = secondScreen()
+/* 
+const video = document.getElementsById("cuadroVideo");
+
+navigator.mediaDevices.getUserMedia({
+  video: true,
+  audio: false
+}).then(async function(stream){
+  let recorder = RecordRTC(stream, {
+    type: "video"
+  });
+})
+
+document.getElementById("campturarBtn").onclick = recorder.startRecording();
+ */
