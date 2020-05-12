@@ -281,7 +281,8 @@ a {
   height: 34px;
   margin-left: 15px;
   margin-bottom: 15px;
-  z-index: 100; }
+  z-index: 100;
+  cursor: pointer; }
 
 .cajitaMas:hover {
   border: 1px dotted #110038; }
@@ -304,6 +305,13 @@ a {
 
 .gifTraido:hover {
   cursor: pointer; }
+
+.fullHeightPlease {
+  height: 280px;
+  width: 280px; }
+
+.lasTendencias {
+  height: 280px; }
 
 .tendText {
   width: 1200px;

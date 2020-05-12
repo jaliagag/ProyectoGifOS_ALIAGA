@@ -183,7 +183,6 @@ function updateValue(e) {
     httpGetAsync(autoc_url,tenorCallback_searchSuggestion);
 }
 
-// FALTA: hacer que los resultados se muestren en dos columnas.... eso va a doler
 // TENDENCIAS
 
 const tendenciasGiphy = `https://api.giphy.com/v1/gifs/trending?api_key=${apikey}&limit=20`;
@@ -208,8 +207,8 @@ fetch(tendenciasGiphy).then((res) => {
         }
         laNada += `
         <div class="laRecalcada" onclick="abreteSesamo(${url})">
-            <a href="${url}">
-                <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
+            <a href="${url}" id="fullHeightPlease">
+                <img src="${url}" alt="gif" z-index=0 class="lasTendencias" />
                 <div class="chDLL">#${finalTag}</div>
             </a>
         </div>`;
@@ -228,27 +227,20 @@ let cargarSugerencias = () => {
         return res.json()
     }).then((json) => {
         let printCat = document.getElementById("cuatroFantasticos");
-    
-        //console.log(json)
         let miraPadre = "";
         json.data.forEach((obj) => {
             const url = obj.gif.url;
-            //console.log(url);
             const tags = obj.gif.tags;
                 console.log(tags)
-            /* let muchasTags = tags.length;
-                //console.log(chauGif);*/
-            let finalTag = ""; 
-            //let esGrande = 4;
+            /* let soloTres = function (){
+                for(i = 0; i < 3; i++){
 
-            /* if (muchasTags <= 3) {
-                finalTag = tags;
-            } else {
-                for (i = 0; muchasTags > 3; i++)
-            } */
+                }
+            }; */
+            let finalTag = ""; 
             miraPadre += `
             <div class="gifBox">
-                <div class="arribita">#<span id="elHastag">${tags}</span><a href="#"><img src="assets/close.svg" alt="X"></a></div>
+                <div class="arribita"><span id="elHastag">#${tags[0]} ${tags[1]} ${tags[2]}</span><a href="#"><img src="assets/close.svg" alt="X"></a></div>
                 <div class="elGif" id="gifsTende">
                     <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
                     <div class="sugBorde">
