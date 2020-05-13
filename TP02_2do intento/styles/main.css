@@ -247,7 +247,8 @@ a {
   box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
   display: flex;
   justify-content: center;
-  flex-direction: column; }
+  flex-direction: column;
+  cursor: pointer; }
 
 .arribita {
   width: 280px;
@@ -265,28 +266,6 @@ a {
   justify-content: center;
   flex-direction: column; }
 
-.sugBorde {
-  width: 278px;
-  height: 278px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  z-index: 100; }
-
-.sugBorder:hover {
-  border: 1px dotted #110038; }
-
-.cajitaMas {
-  widht: 81px;
-  height: 34px;
-  margin-left: 15px;
-  margin-bottom: 15px;
-  z-index: 100;
-  cursor: pointer; }
-
-.cajitaMas:hover {
-  border: 1px dotted #110038; }
-
 #resultadoBusqueda {
   display: grid;
   grid-gap: 1em;
@@ -301,10 +280,56 @@ a {
   overflow: hidden;
   border: 1px solid #110038;
   display: block;
+  position: relative;
+  cursor: pointer; }
+
+#arribaEnTe {
+  margin-left: 4px;
+  margin-top: 4px; }
+
+.deLosCuatro {
+  width: 280px;
+  height: 280px;
+  border: 1px solid #110038;
+  cursor: pointer; }
+
+.cajaMayorCuatro {
+  width: 288px;
+  height: 313px;
+  background: #E6E6E6;
+  box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF;
+  margin-left: 10px; }
+
+.laUltimaCaja {
+  width: 280px;
+  height: 280px;
+  margin-left: 4px;
   position: relative; }
 
-.gifTraido:hover {
-  cursor: pointer; }
+.sugBorde {
+  top: 230px;
+  position: absolute;
+  width: 81px;
+  margin-left: 15px; }
+
+.sugBorder:hover {
+  border: 1px dotted #110038; }
+
+.cajitaMas {
+  cursor: pointer;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .cajitaMas span {
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 18px; }
+
+.cajitaMas:hover {
+  border: 1px dotted #110038; }
 
 .fullHeightPlease {
   height: 280px;

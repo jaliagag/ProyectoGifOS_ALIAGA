@@ -229,20 +229,14 @@ let cargarSugerencias = () => {
         let printCat = document.getElementById("cuatroFantasticos");
         let miraPadre = "";
         json.data.forEach((obj) => {
-            const url = obj.gif.url;
+            const url = obj.gif.images.original.url;
             const tags = obj.gif.tags;
-                console.log(tags)
-            /* let soloTres = function (){
-                for(i = 0; i < 3; i++){
-
-                }
-            }; */
-            let finalTag = ""; 
+            console.log(obj)
             miraPadre += `
-            <div class="gifBox">
-                <div class="arribita"><span id="elHastag">#${tags[0]} ${tags[1]} ${tags[2]}</span><a href="#"><img src="assets/close.svg" alt="X"></a></div>
-                <div class="elGif" id="gifsTende">
-                    <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
+            <div class="cajaMayorCuatro">
+                <div class="arribita" id="arribaEnTe"><span id="elHastag">#${tags[0]} ${tags[1]} ${tags[2]}</span><a href="#"><img src="assets/close.svg" alt="X"></a></div>
+                <div class="laUltimaCaja" id="gifsTende">
+                    <img src="${url}" alt="gif" z-index=0 class="deLosCuatro" onclick="abreteSesamo(${url})"/>
                     <div class="sugBorde">
                         <div class="cajitaMas"><span>Ver más...</span></div>
                     </div>
@@ -256,3 +250,5 @@ let cargarSugerencias = () => {
 }
 
 cargarSugerencias();
+
+let 
