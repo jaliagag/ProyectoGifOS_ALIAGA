@@ -291,7 +291,7 @@ a {
   width: 280px;
   height: 280px;
   border: 1px solid #110038;
-  cursor: pointer; }
+  z-index: 0; }
 
 .cajaMayorCuatro {
   width: 288px;
@@ -310,7 +310,8 @@ a {
   top: 230px;
   position: absolute;
   width: 81px;
-  margin-left: 15px; }
+  margin-left: 15px;
+  z-index: 100; }
 
 .sugBorder:hover {
   border: 1px dotted #110038; }
