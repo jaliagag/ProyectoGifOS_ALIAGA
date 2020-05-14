@@ -195,7 +195,8 @@ fetch(tendenciasGiphy).then((res) => {
     //console.log(json)
     let laNada = "";
     json.data.forEach((obj) => {
-        const url = obj.images.original.url;
+        //const url = obj.images.original.url;
+        const url = obj.images.fixed_width.url;
         const tags = obj.title;
         const chauGif = tags.includes("GIF");
         let finalTag = "";
@@ -231,11 +232,6 @@ let cargarSugerencias = () => {
         json.data.forEach((obj) => {
             const url = obj.gif.images.original.url;
             const tags = obj.gif.tags;
-            console.log("las tags peladas: " + tags);
-            console.log(typeof(tags));
-            //alert(tags[0]);
-            let soloUnitaTag = tags[0].value;
-            console.log(typeof(soloUnitaTag));
             miraPadre += `
             <div class="cajaMayorCuatro">
                 <div class="arribita" id="arribaEnTe"><span id="elHastag">#${tags[0]} ${tags[1]} ${tags[2]}</span><a href="#"><img src="assets/close.svg" alt="X"></a></div>
@@ -243,7 +239,7 @@ let cargarSugerencias = () => {
                     <a href="${url}">
                         <img src="${url}" alt="gif" class="deLosCuatro" />
                     </a>
-                    <div class="sugBorde" onclick="vasDeEsto(${tags[0]})">
+                    <div class="sugBorde" onclick=vasDeEsto("${tags[0]}")>
                         <div class="cajitaMas"><span>Ver más...</span></div>
                     </div>
                 </div>
@@ -258,8 +254,8 @@ let cargarSugerencias = () => {
 cargarSugerencias();
 
 let vasDeEsto = (valorX) => {
-    alert(valorX);
-    //window.localStorage.setItem("searchTerm", valorX);
-    //window.location.href = "busq.html";
+    //alert(valorX);
+    window.localStorage.setItem("searchTerm", valorX);
+    window.location.href = "busq.html";
 }
 
