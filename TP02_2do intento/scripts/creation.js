@@ -72,6 +72,57 @@ let arrepentido = () => {
 // VIDEO
 //////////////////////////////////////////
 
+var image = document.getElementById('cuadroVideo');
+
+function captureCamera(callback) {
+    navigator.mediaDevices.getUserMedia({ video: true }).then(function(camera) {
+        callback(camera);
+    }).catch(function(error) {
+        alert('Unable to capture your camera. Please check console logs.');
+        console.error(error);
+    });
+}
+
+function stopRecordingCallback() {
+    image.src = URL.createObjectURL(recorder.getBlob());
+    recorder.camera.stop();
+    recorder.destroy();
+    recorder = null;
+}
+
+var recorder; // globally accessible
+
+document.getElementById('btn-start-recording').onclick = function() {
+    this.disabled = true;
+    captureCamera(function(camera) {
+        recorder = RecordRTC(camera, {
+            type: 'gif',
+            frameRate: 1,
+            quality: 10,
+            width: 832,
+            height: 434,
+            hidden: 240,
+            onGifRecordingStarted: function() {
+            },
+            onGifPreview: function(gifURL) {
+                image.src = gifURL;
+            }
+        });
+
+        recorder.startRecording();
+
+        // release camera on stopRecording
+        recorder.camera = camera;
+
+        document.getElementById('btn-stop-recording').disabled = false;
+    });
+};
+
+document.getElementById('btn-stop-recording').onclick = function() {
+    this.disabled = true;
+    recorder.stopRecording(stopRecordingCallback);
+};
+
 //navigator.mediaDevices.getUserMedia(constraints)
 //.then(function(stream) {
   /* use the stream */
@@ -186,7 +237,7 @@ navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catc
 
 // github capture gif doc
 
-var videoRec = document.getElementById("cuadroVideo");
+/* var videoRec = document.getElementById("cuadroVideo");
 
 let getStreamAndRecord = () => {
   nagigator.mediaDevices.getUserMedia({
@@ -198,7 +249,7 @@ let getStreamAndRecord = () => {
     videoRec.srcObject = stream;
     videoRec.play()
   })
-}
+} */
 /*
 function captureCamera(callback) {
   navigator.mediaDevices.getUserMedia({ video: true }).then(function(camera) {
