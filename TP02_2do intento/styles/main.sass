@@ -164,9 +164,10 @@ a
     height: 160px
     background: #E6E6E6
     box-shadow: inset -2px -2px 0 0 #B4B4B4, inset 2px 2px 0 0 #FFFFFF
-    z-index: 1
+    z-index: 100
     margin-top: -9px
     display: none
+    position: absolute
 
 .talVez
     width: 1055px
@@ -185,6 +186,7 @@ a
 
 .inFlexiza
     width: 100%
+    z-index: 100
 
 
 .inFlexiza:hover
@@ -195,6 +197,7 @@ a
 .flexiza
     display: flex
     flex-direction: column
+    z-index: 100
 
 .laRecalcada
     max-width: 388px
@@ -219,6 +222,11 @@ a
     color: white
     font-weight: bold
     visibility: hidden
+
+#guardado
+//    margin-top: 15px
+    margin-bottom: 15px
+    z-index: 0
 
 // SUGERENCIAS
 
@@ -332,6 +340,22 @@ a
 
 .sugBorder:hover
     border: 1px dotted #110038
+
+.cajaMayorSol
+    top: 100px
+    margin-top: 30px
+    margin-bottom: -35px
+    margin-left: 15px
+    
+.historyBox
+    padding: 7px 15px
+
+#guardado
+    display: flex
+    align-items: center
+
+#theOneAndOnly
+    z-index: -1
 
 .cajitaMas
     cursor: pointer

@@ -60,6 +60,7 @@ loEscrito.addEventListener("submit", (e) => {
     e.preventDefault();
     let finalmenteElInput = buscar.value;
     window.localStorage.setItem("searchTerm", finalmenteElInput);
+    window.localStorage.setItem("lastSearch", finalmenteElInput);
     window.location.href = "busq.html";
 });
 
@@ -192,7 +193,6 @@ fetch(tendenciasGiphy).then((res) => {
 }).then((json) => {
     let printTrend = document.getElementById("mostrarAleatorios");
 
-    //console.log(json)
     let laNada = "";
     json.data.forEach((obj) => {
         //const url = obj.images.original.url;
@@ -251,6 +251,24 @@ let cargarSugerencias = () => {
     });
 }
 
+//alert(hayAlgo)
+let guardoONo = () => {
+    var hayAlgo = localStorage.getItem("lastSearch");
+    if (hayAlgo == "" || hayAlgo == null) {
+        //alert("no hay nada che")
+    }else{
+        let aparecido = "";
+        let elLlanero = document.getElementById("guardado");
+        aparecido += `
+        <div class="cajaMayorSol" onclick=vasDeEsto("${hayAlgo}") id="theOneAndOnly">
+            <div class="historyBox"><span>#${hayAlgo}</span></div>
+        </div>
+        `
+        elLlanero.innerHTML = aparecido;
+    };
+}
+
+guardoONo();
 cargarSugerencias();
 
 let vasDeEsto = (valorX) => {
