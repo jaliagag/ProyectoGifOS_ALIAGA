@@ -197,6 +197,7 @@ fetch(tendenciasGiphy).then((res) => {
     json.data.forEach((obj) => {
         //const url = obj.images.original.url;
         const url = obj.images.fixed_width.url;
+        const paJuera = obj.images.original.url;
         const tags = obj.title;
         const chauGif = tags.includes("GIF");
         let finalTag = "";
@@ -208,7 +209,7 @@ fetch(tendenciasGiphy).then((res) => {
         }
         laNada += `
         <div class="laRecalcada" onclick="abreteSesamo(${url})">
-            <a href="${url}" id="fullHeightPlease">
+            <a href="${paJuera}" id="fullHeightPlease">
                 <img src="${url}" alt="gif" z-index=0 class="lasTendencias" />
                 <div class="chDLL">#${finalTag}</div>
             </a>
