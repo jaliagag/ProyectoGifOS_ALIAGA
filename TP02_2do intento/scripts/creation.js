@@ -94,19 +94,19 @@ let arrepentido = () => {
       /* recorder.getDataURL(function(dataURL) {
         window.open(dataURL);
       }) *//*
-    });
-  };
-  aGrabar();
+});
+};
+aGrabar();
 }
 
 function errorCallback(error) {
-  alert("ASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDF" + error);
+alert("ASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDF" + error);
 }
 
 var mediaConstraints = { video: true, audio: false };
 
 function alInicio() {
-  navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback);
+navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback);
 }
 */
 /////////////////////////////////////////////////////////////////////////////////////
@@ -122,15 +122,18 @@ let alInicio = () => {
     audio: false,
     video: {
       width: 832,
-			height: 434 
+      height: 434
     }
   })
-  .then(function(stream) {
-    image.srcObject = stream;
-    image.play();
-    
-    document.getElementById('btn-start-recording').onclick = function (stream) {
-      // esconder el botón de inicio
+    .then(function (stream) {
+      image.srcObject = stream;
+      image.play();
+
+      document.getElementById('btn-start-recording').onclick = function (stream) {
+        // esconder el botón de inicio
+        document.getElementById("btn-start-recording").style.display = "none";
+        document.getElementById("btn-stop-recording").style.display = "block";
+        
         recorder = RecordRTC(stream, {
           type: 'gif',
           frameRate: 1,
@@ -145,14 +148,23 @@ let alInicio = () => {
           } */
         });
         recorder.startRecording();
-        // release camera on stopRecording
-        recorder.camera = camera;
-    
+        recorder.camera = stream;
+
+
+        document.getElementById('btn-stop-recording').onclick = (function () {
+          image.src = URL.createObjectURL(recorder.getBlob());
+          recorder.camera.stop();
+          recorder.destroy();
+          recorder = null
+        })        
         //document.getElementById('btn-stop-recording').disabled = false;
-    };
-    
-  })
+      };
+    })
 }
+
+/* recorder.stopRecording(function () {
+  recorder.camera.stop();
+ */
 
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
