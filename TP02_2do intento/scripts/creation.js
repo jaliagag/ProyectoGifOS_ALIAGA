@@ -1,6 +1,6 @@
 let theme_selection = () => {
   if (typeof (Storage) !== "undefined") {
-    var hayAlgoQ = window.localStorage.getItem("theme");
+    let hayAlgoQ = window.localStorage.getItem("theme");
     //console.log(hayAlgoQ);
     if (hayAlgoQ == "") {
       fboton();
@@ -71,53 +71,17 @@ let arrepentido = () => {
 };
 //////////////////////////////////////////
 // VIDEO
-//Failed to execute createobjecturl on url no function was found that matched the signature provided
 //////////////////////////////////////////
 
-
-//youtube
-
-/* function successCallback(stream) {
-  //document.getElementById('cuadroVideo').src = URL.MediaStream(stream);
-  //document.getElementById('cuadroVideo').muted = true;
-
-  var recorder = RecordRTC(stream, {
-    type: "video"
-  });
-  recorder.startRecording();
-  function aGrabar() {
-    recorder.stopRecording(function () {
-      var blob = recorder.blob;
-      var mediaStream = new MediaStream(blob);
-      document.getElementById('cuadroVideo').srcObject = mediaStream;
-      document.getElementById('cuadroVideo').muted = false;
-      /* recorder.getDataURL(function(dataURL) {
-        window.open(dataURL);
-      }) *//*
-});
-};
-aGrabar();
-}
-
-function errorCallback(error) {
-alert("ASDFASDFASDFASDFASDFASDFASDFASDFASDFASDFASDF" + error);
-}
-
-var mediaConstraints = { video: true, audio: false };
-
-function alInicio() {
-navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback);
-}
-*/
-/////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
-
-// Mati
-
 const imagen = document.getElementById('cuadroVideo');
+var textirijillo = document.getElementById("changeling");
+var cuadrito = document.getElementById("camaraFotoBtn");
+var detenteInsensato = document.getElementById("btn-stop-recording");
 var recorder; // globally accessible
 
 let alInicio = () => {
+  textirijillo.innerHTML = "Un chequeo antes de empezar";
+  cuadrito.src = "assets/camera.svg";
   navigator.mediaDevices.getUserMedia({
     audio: false,
     video: {
@@ -131,8 +95,25 @@ let alInicio = () => {
 
       document.getElementById('btn-start-recording').onclick = function () {
         // esconder el botón de inicio
+        textirijillo.innerHTML = "Capturando tu Guifo";
         this.style.display = "none";
-        document.getElementById("btn-stop-recording").style.display = "block";
+        detenteInsensato.style.display = "block";
+        detenteInsensato.style.color = "white";
+        detenteInsensato.style.background = "#FF6161";
+        
+        let hayAlgoQ = window.localStorage.getItem("theme");
+        
+        if(hayAlgoQ = "light"){
+          cuadrito.src = "assets/recording.svg";
+          cuadrito.style.background = "#FF6161";
+          console.log("Aunque no lo creas, este es el del día");
+        } else {
+          cuadrito.src = "assets/recording_dark.svg";
+          cuadrito.style.background = "#FF6161";
+          console.log("Este es el de la noche");
+        }
+
+
 
         recorder = RecordRTC(stream, {
           type: 'gif',
@@ -156,7 +137,7 @@ let alInicio = () => {
           recorder = null;
         }
 
-        document.getElementById('btn-stop-recording').onclick = function () {
+        detenteInsensato.onclick = function () {
           recorder.stopRecording(stopRecordingCallback);
         }
         //document.getElementById('btn-stop-recording').disabled = false;
