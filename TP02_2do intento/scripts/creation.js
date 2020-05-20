@@ -114,7 +114,7 @@ navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catc
 
 // Mati
 
-const image = document.getElementById('cuadroVideo');
+const imagen = document.getElementById('cuadroVideo');
 var recorder; // globally accessible
 
 let alInicio = () => {
@@ -126,37 +126,39 @@ let alInicio = () => {
     }
   })
     .then(function (stream) {
-      image.srcObject = stream;
-      image.play();
+      imagen.srcObject = stream;
+      imagen.play();
 
-      document.getElementById('btn-start-recording').onclick = function (stream) {
+      document.getElementById('btn-start-recording').onclick = function () {
         // esconder el botón de inicio
-        document.getElementById("btn-start-recording").style.display = "none";
+        this.style.display = "none";
         document.getElementById("btn-stop-recording").style.display = "block";
-        
+
         recorder = RecordRTC(stream, {
           type: 'gif',
           frameRate: 1,
           quality: 10,
           width: 832,
           height: 434,
-          //hidden: 240,
-          /* onGifRecordingStarted: function () {
-          },
-          onGifPreview: function (gifURL) {
-            image.src = gifURL;
-          } */
+          obGifPreview: function (gifURL) {
+            imagen.src = gifURL;
+          }
         });
+
         recorder.startRecording();
         recorder.camera = stream;
 
 
-        document.getElementById('btn-stop-recording').onclick = (function () {
-          image.src = URL.createObjectURL(recorder.getBlob());
+        function stopRecordingCallback() {
+          imagen.src = URL.createObjectURL(recorder.getBlob());
           recorder.camera.stop();
           recorder.destroy();
-          recorder = null
-        })        
+          recorder = null;
+        }
+
+        document.getElementById('btn-stop-recording').onclick = function () {
+          recorder.stopRecording(stopRecordingCallback);
+        }
         //document.getElementById('btn-stop-recording').disabled = false;
       };
     })
