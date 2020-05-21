@@ -77,7 +77,9 @@ const imagen = document.getElementById('cuadroVideo');
 var textirijillo = document.getElementById("changeling");
 var cuadrito = document.getElementById("camaraFotoBtn");
 var detenteInsensato = document.getElementById("btn-stop-recording");
+var laDuracion = document.getElementById("laDuracion");
 var recorder; // globally accessible
+var dateStarted; // duration
 
 let alInicio = () => {
   textirijillo.innerHTML = "Un chequeo antes de empezar";
@@ -93,17 +95,40 @@ let alInicio = () => {
       imagen.srcObject = stream;
       imagen.play();
 
+      function calculateTimeDuration(secs) {
+        var hr = Math.floor(secs / 3600);
+        var min = Math.floor((secs - (hr * 3600)) / 60);
+        var sec = Math.floor(secs - (hr * 3600) - (min * 60));
+
+        // Timer
+
+        if (min < 10) {
+          min = "0" + min;
+        }
+
+        if (sec < 10) {
+          sec = "0" + sec;
+        }
+
+        if (hr <= 0) {
+          return min + ':' + sec;
+        }
+
+        return hr + ':' + min + ':' + sec;
+      }
+
       document.getElementById('btn-start-recording').onclick = function () {
         // esconder el botón de inicio
         textirijillo.innerHTML = "Capturando tu Guifo";
         this.style.display = "none";
+        laDuracion.style.visibility = "visible";
         detenteInsensato.style.display = "block";
         detenteInsensato.style.color = "white";
         detenteInsensato.style.background = "#FF6161";
-        
+
         let hayAlgoQ = window.localStorage.getItem("theme");
-        
-        if(hayAlgoQ = "light"){
+
+        if (hayAlgoQ = "light") {
           cuadrito.src = "assets/recording.svg";
           cuadrito.style.background = "#FF6161";
           console.log("Aunque no lo creas, este es el del día");
@@ -121,16 +146,28 @@ let alInicio = () => {
           quality: 10,
           width: 832,
           height: 434,
+          timeSlice: 1000,
           obGifPreview: function (gifURL) {
             imagen.src = gifURL;
-          }
+          } 
         });
 
         recorder.startRecording();
+        dateStarted = new Date().getTime(); // duration
         recorder.camera = stream;
 
+        (function looper() { //duration
+          if (!recorder) {
+            return;
+          }
+
+          laDuracion.innerHTML = "00:" + calculateTimeDuration((new Date().getTime() - dateStarted) / 1000);
+
+          setTimeout(looper, 1000);
+        })();
 
         function stopRecordingCallback() {
+          textirijillo.innerHTML = "Vista previa";
           imagen.src = URL.createObjectURL(recorder.getBlob());
           recorder.camera.stop();
           recorder.destroy();
