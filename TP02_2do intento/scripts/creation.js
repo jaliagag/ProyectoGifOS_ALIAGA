@@ -74,6 +74,8 @@ let arrepentido = () => {
 //////////////////////////////////////////
 
 const imagen = document.getElementById('cuadroVideo');
+const elGifF = document.getElementById('cuadroImg');
+elGifF.style.display = "none";
 var textirijillo = document.getElementById("changeling");
 var cuadrito = document.getElementById("camaraFotoBtn");
 var detenteInsensato = document.getElementById("btn-stop-recording");
@@ -93,6 +95,7 @@ let alInicio = () => {
   })
     .then(function (stream) {
       imagen.srcObject = stream;
+      elGifF.srcObject = stream;
       imagen.play();
 
       function calculateTimeDuration(secs) {
@@ -138,8 +141,6 @@ let alInicio = () => {
           console.log("Este es el de la noche");
         }
 
-
-
         recorder = RecordRTC(stream, {
           type: 'gif',
           frameRate: 1,
@@ -168,7 +169,9 @@ let alInicio = () => {
 
         function stopRecordingCallback() {
           textirijillo.innerHTML = "Vista previa";
-          imagen.src = URL.createObjectURL(recorder.getBlob());
+          elGifF.src = URL.createObjectURL(recorder.getBlob());
+          imagen.style.display = "none";
+          elGifF.style.display = "block";
           recorder.camera.stop();
           recorder.destroy();
           recorder = null;

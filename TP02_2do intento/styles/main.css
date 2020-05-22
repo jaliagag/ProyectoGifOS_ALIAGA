@@ -326,7 +326,8 @@ a {
   margin-left: 15px; }
 
 .historyBox {
-  padding: 7px 15px; }
+  padding: 7px 15px;
+  color: #FFFFFF; }
 
 #guardado {
   display: flex;
