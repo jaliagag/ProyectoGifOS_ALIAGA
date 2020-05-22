@@ -1,58 +1,58 @@
 let theme_selection = () => {
-    if (typeof(Storage) !== "undefined") {
-      var hayAlgoQ = window.localStorage.getItem("theme");
-      //console.log(hayAlgoQ);
-      if(hayAlgoQ == ""){
-        fboton();
-      } else if (hayAlgoQ == "light"){
-        fboton();
-      } else {
-        //console.log("paso")
-        sboton();
-      }
+  if (typeof (Storage) !== "undefined") {
+    let hayAlgoQ = window.localStorage.getItem("theme");
+    //console.log(hayAlgoQ);
+    if (hayAlgoQ == "") {
+      fboton();
+    } else if (hayAlgoQ == "light") {
+      fboton();
     } else {
-      console.log("Al parecer tu navegador no quiere que guardemos información de vos, pero ¡qué persona cuidadosa!");
+      //console.log("paso")
+      sboton();
     }
+  } else {
+    console.log("Al parecer tu navegador no quiere que guardemos información de vos, pero ¡qué persona cuidadosa!");
+  }
 }
-  
-  // CAMBIAR DE CSS
-  // FALTA ACTUALIZAR EL ONCLICK DE LOS ELEMENTOS EN EL HTML
-  
+
+// CAMBIAR DE CSS
+// FALTA ACTUALIZAR EL ONCLICK DE LOS ELEMENTOS EN EL HTML
+
 let fboton = () => {
-      
-    var elim = document.getElementById("estilardo");
-    elim.remove();
-    var head = document.getElementsByTagName("HEAD")[0];
-    
-    var link = document.createElement("link");
-    
-    link.rel = "stylesheet";
-    link.type = "text/css";
-    link.href = "styles/light_theme.css";
-    link.id = "estilardo";
-    
-    head.appendChild(link);
-  
-    window.localStorage.setItem("theme", "light");
+
+  var elim = document.getElementById("estilardo");
+  elim.remove();
+  var head = document.getElementsByTagName("HEAD")[0];
+
+  var link = document.createElement("link");
+
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.href = "styles/light_theme.css";
+  link.id = "estilardo";
+
+  head.appendChild(link);
+
+  window.localStorage.setItem("theme", "light");
 }
-    
+
 let sboton = () => {
-  
-    var elim = document.getElementById("estilardo");
-    elim.remove();
-      
-    var head = document.getElementsByTagName("HEAD")[0];
-    
-    var link = document.createElement("link");
-    
-    link.rel = "stylesheet";
-    link.type = "text/css";
-    link.href = "styles/dark_theme.css";
-    link.id = "estilardo";
-    
-    head.appendChild(link);
-  
-    window.localStorage.setItem("theme", "dark");
+
+  var elim = document.getElementById("estilardo");
+  elim.remove();
+
+  var head = document.getElementsByTagName("HEAD")[0];
+
+  var link = document.createElement("link");
+
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.href = "styles/dark_theme.css";
+  link.id = "estilardo";
+
+  head.appendChild(link);
+
+  window.localStorage.setItem("theme", "dark");
 }
 
 //////////////////////////////////////////
@@ -60,259 +60,148 @@ let sboton = () => {
 var iniciar = document.getElementById("letTheGamesBegin");
 
 let holis = () => {
-    document.getElementById("section31").style.display = "none";
-    document.getElementById("section32").style.display = "block";
+  document.getElementById("section31").style.display = "none";
+  document.getElementById("section32").style.display = "block";
+  alInicio();
 };
 
 let arrepentido = () => {
-    document.getElementById("section31").style.display = "block";
-    document.getElementById("section32").style.display = "none";
+  document.getElementById("section31").style.display = "block";
+  document.getElementById("section32").style.display = "none";
 };
 //////////////////////////////////////////
 // VIDEO
 //////////////////////////////////////////
 
-var image = document.getElementById('cuadroVideo');
-
-function captureCamera(callback) {
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(camera) {
-        callback(camera);
-    }).catch(function(error) {
-        alert('Unable to capture your camera. Please check console logs.');
-        console.error(error);
-    });
-}
-
-function stopRecordingCallback() {
-    image.src = URL.createObjectURL(recorder.getBlob());
-    recorder.camera.stop();
-    recorder.destroy();
-    recorder = null;
-}
-
+const imagen = document.getElementById('cuadroVideo');
+const elGifF = document.getElementById('cuadroImg');
+elGifF.style.display = "none";
+var textirijillo = document.getElementById("changeling");
+var cuadrito = document.getElementById("camaraFotoBtn");
+var detenteInsensato = document.getElementById("btn-stop-recording");
+var laDuracion = document.getElementById("laDuracion");
 var recorder; // globally accessible
+var dateStarted; // duration
 
-document.getElementById('btn-start-recording').onclick = function() {
-    this.disabled = true;
-    captureCamera(function(camera) {
-        recorder = RecordRTC(camera, {
-            type: 'gif',
-            frameRate: 1,
-            quality: 10,
-            width: 832,
-            height: 434,
-            hidden: 240,
-            onGifRecordingStarted: function() {
-            },
-            onGifPreview: function(gifURL) {
-                image.src = gifURL;
-            }
+let alInicio = () => {
+  textirijillo.innerHTML = "Un chequeo antes de empezar";
+  cuadrito.src = "assets/camera.svg";
+  navigator.mediaDevices.getUserMedia({
+    audio: false,
+    video: {
+      width: 832,
+      height: 434
+    }
+  })
+    .then(function (stream) {
+      imagen.srcObject = stream;
+      elGifF.srcObject = stream;
+      imagen.play();
+
+      function calculateTimeDuration(secs) {
+        var hr = Math.floor(secs / 3600);
+        var min = Math.floor((secs - (hr * 3600)) / 60);
+        var sec = Math.floor(secs - (hr * 3600) - (min * 60));
+
+        // Timer
+
+        if (min < 10) {
+          min = "0" + min;
+        }
+
+        if (sec < 10) {
+          sec = "0" + sec;
+        }
+
+        if (hr <= 0) {
+          return min + ':' + sec;
+        }
+
+        return hr + ':' + min + ':' + sec;
+      }
+
+      document.getElementById('btn-start-recording').onclick = function () {
+        // esconder el botón de inicio
+        textirijillo.innerHTML = "Capturando tu Guifo";
+        this.style.display = "none";
+        laDuracion.style.visibility = "visible";
+        detenteInsensato.style.display = "block";
+        detenteInsensato.style.color = "white";
+        detenteInsensato.style.background = "#FF6161";
+
+        let hayAlgoQ = window.localStorage.getItem("theme");
+
+        if (hayAlgoQ = "light") {
+          cuadrito.src = "assets/recording.svg";
+          cuadrito.style.background = "#FF6161";
+          console.log("Aunque no lo creas, este es el del día");
+        } else {
+          cuadrito.src = "assets/recording_dark.svg";
+          cuadrito.style.background = "#FF6161";
+          console.log("Este es el de la noche");
+        }
+
+        recorder = RecordRTC(stream, {
+          type: 'gif',
+          frameRate: 1,
+          quality: 10,
+          width: 832,
+          height: 434,
+          timeSlice: 1000,
+          obGifPreview: function (gifURL) {
+            imagen.src = gifURL;
+          } 
         });
 
         recorder.startRecording();
+        dateStarted = new Date().getTime(); // duration
+        recorder.camera = stream;
 
-        // release camera on stopRecording
-        recorder.camera = camera;
+        (function looper() { //duration
+          if (!recorder) {
+            return;
+          }
 
-        document.getElementById('btn-stop-recording').disabled = false;
-    });
-};
+          laDuracion.innerHTML = "00:" + calculateTimeDuration((new Date().getTime() - dateStarted) / 1000);
 
-document.getElementById('btn-stop-recording').onclick = function() {
-    this.disabled = true;
-    recorder.stopRecording(stopRecordingCallback);
-};
+          setTimeout(looper, 1000);
+        })();
 
-//navigator.mediaDevices.getUserMedia(constraints)
-//.then(function(stream) {
-  /* use the stream */
-//})
-//.catch(function(err) {
-  /* handle the error */
-//});
+        function stopRecordingCallback() {
+          textirijillo.innerHTML = "Vista previa";
+          elGifF.src = URL.createObjectURL(recorder.getBlob());
+          imagen.style.display = "none";
+          elGifF.style.display = "block";
+          recorder.camera.stop();
+          recorder.destroy();
+          recorder = null;
+        }
 
-// acamica
-
-/* let getStreamAndRecord = () => {
-  nagigator.mediaDevices.getUserMedia({
-    audio:false,
-    video: {
-      height: { max: 480 }
-    }
-  }).then(function(stream) {
-    video.srcObject = stream;
-    video.play()
-  })
-} */
-/* 
-let stream = await navigator.mediaDevices.getUserMedia({video: true, audio: true});
-let recorder = new RecordRTCPromisesHandler(stream, {
-    type: 'video'
-});
-recorder.startRecording();
-
-const sleep = m => new Promise(r => setTimeout(r, m));
-await sleep(3000);
-
-await recorder.stopRecording();
-let blob = await recorder.getBlob();
-invokeSaveAsDialog(blob); */
-
-/// youtube
-
-/* let successCallback = (stream) => {
-  //1
-  //document.querySelector("video").src = URL.createObjectURL(stream);
-  //2
-  // const mediaStream = new MediaStream();
-  // const video = document.querySelector("video");
-  //video.srcObject = mediaStream;
-  //3
-  video.srcObject = stream;
-  video.play();
-
-  
-  document.querySelector("video").muted = true;
-
-  var recorder = RecordRTC(stream, {
-    type: "video"
-  });
-  recorder.startRecording();
-  setTimeout(function(){
-    recorder.stopRecording(function() {
-      var blob = recorder.blob;
-      var url = URL.createObjectURL(blob);
-      document.querySelector("video").src = url;
-      //document.querySelector("video").muted = false;
-      //recorder.getDataURL(function(dataURL){
-        //windows.open(dataURL)
-      //}); 
+        detenteInsensato.onclick = function () {
+          recorder.stopRecording(stopRecordingCallback);
+        }
+        //document.getElementById('btn-stop-recording').disabled = false;
+      };
     })
-  }, 5 * 1000)
 }
 
-let erroCallback = (error) => {
-  alert(error);
-}
+/* recorder.stopRecording(function () {
+  recorder.camera.stop();
+ */
 
-var mediaConstraints = {video: true, audio: false};
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 
-let start = () =>{
-  navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback)
-  .catch(erroCallback)
-}
+// CREAR EL GIF - IT WORKS
 
- *//* 
 
-function successCallback(stream) {
-	document.querySelector("video").src = URL.createObjectURL(stream);
-  document.querySelector("video").muted = true;
-  
-	var recorder = RecordRTC (stream, {
-  type: "video"
-  });
-  
-  recorder.startRecording();
-  
-  setTimeout(function(){
-  	recorder.stopRecording(function(){
-    var blob = recorder.blob;
-    var url = URL.createObjectURL(blob);
-    //recorder.getDataURL(function(dataURL){
-    //window.open(dataURL);
-    //	})
-    document.querySelector("video").qusrc = url;
-    document.querySelector("video").muted = false;
-    })
-  }, 5 * 1000);
-}
 
-function errorCallback(error) {
-	alert(error);
-}
-
-var mediaConstraints = { video: true, audio: true}
-
-navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback); */
-
-// github capture gif doc
-
-/* var videoRec = document.getElementById("cuadroVideo");
-
-let getStreamAndRecord = () => {
-  nagigator.mediaDevices.getUserMedia({
-    audio:false,
-    video: {
-      height: { max: 480 }
-    }
-  }).then(function(stream) {
-    videoRec.srcObject = stream;
-    videoRec.play()
-  })
-} */
 /*
-function captureCamera(callback) {
-  navigator.mediaDevices.getUserMedia({ video: true }).then(function(camera) {
-    callback(camera);
-  }).catch(function(error) {          
-    alert('Unable to capture your camera. Please check console logs.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    console.error(error);
-  });
-}
- 
-function stopRecordingCallback() {
-    //document.querySelector('h1').innerHTML = 'Gif recording stopped: ' + bytesToSize(recorder.getBlob().size);
-    videoRec.src = URL.createObjectURL(recorder.getBlob());
-    recorder.camera.stop();
-    //recorder.destroy();
-    recorder = null;
-}
-
-
-var recorder; // globally accessible
-
-document.getElementById("campturarBtn").onclick = function () {
-  this.disabled = true;
-  captureCamera(function(camera) {
-    //document.querySelector('h1').innerHTML = 'Waiting for Gif Recorder to start...';
-    recorder = RecordRTC(camera, {
-      type: 'gif',
-      frameRate: 1,
-      quality: 10,
-      width: 360,
-      hidden: 240,
-      onGifRecordingStarted: function() {
-        //document.querySelector('h1').innerHTML = 'Gif recording started.';
-      },
-      onGifPreview: function(gifURL) {
-        videoRec.src = gifURL;
-      }
-    });
-          
-    recorder.startRecording();
-          
-    // release camera on stopRecording
-    recorder.camera = camera;
-          
-    document.getElementById('btn-stop-recording').disabled = false;
-  });
+DiskStorage = {
+    init: function() {},
+    Fetch: function({audioBlob: Blob, videoBlob: Blob, gifBlob: Blob}) {},
+    Store: function({audioBlob: Blob, videoBlob: Blob, gifBlob: Blob}) {},
+    onError: function() {},
+    dataStoreName: function() {}
 };
-     
-document.getElementById('btn-stop-recording').onclick = function() {
-  this.disabled = true;
-  recorder.stopRecording(stopRecordingCallback);
-};
-/* 
-const video = document.getElementsById("cuadroVideo");
-
-navigator.mediaDevices.getUserMedia({
-  video: true,
-  audio: false
-}).then(async function(stream){
-  let recorder = RecordRTC(stream, {
-    type: "video"
-  });
-})
-
-document.getElementById("campturarBtn").onclick = recorder.startRecording();
  */

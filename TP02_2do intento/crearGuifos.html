@@ -50,16 +50,25 @@
             <section id="section32">
                 <div class="crearDos">
                     <div class="barraArriba">
-                        <img src="assets/close.svg" alt="X" class="volverPaTras" onclick="arrepentido()">
-                        <span>Un chequeo antes de empezar</span>
+                        <a href="crearGuifos.html">
+                            <img src="assets\close.svg" alt="X" class="volverPaTras" onclick="arrepentido()" id="umaX">
+                        </a>
+                        <span id="changeling"></span>
                     </div>
                     <div id="captura" class="cuadroCaptura">
-                        <img id="cuadroVideo">
+                        <video id="cuadroVideo"></video>
+                    
+                        <img id="cuadroImg" autoplay />
                     </div>
-                    <div class="startCapturaBtn">
-                        <img src="assets/camera.svg" alt="camara" class="camaraFotoBtn" id="camaraFotoBtn">
-                        <button class="capturarBtn" id="btn-start-recording">Capturar</button>
-                        <button class="capturarBtn" id="btn-stop-recording">STOP</button>
+                    <div class="startCapturaBtn" id="cajaDeAbajo">
+                        <div class="cajitaReloj" id="laDuracion">
+                            <span class="reloj"></span>
+                        </div>
+                        <div class="paLaDerecha">
+                            <img alt="camara" class="camaraFotoBtn" id="camaraFotoBtn">
+                            <button class="capturarBtn" id="btn-start-recording">Capturar</button>
+                            <button class="capturarBtn" id="btn-stop-recording">Listo</button>
+                        </div>
                     </div>
                 </div>
             </section>
