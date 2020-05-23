@@ -517,6 +517,9 @@ a {
   margin-top: 15px;
   margin-right: 25px; }
 
+#repetir {
+  background: #FFF4FD; }
+
 #btn-stop-recording {
   display: none; }
 

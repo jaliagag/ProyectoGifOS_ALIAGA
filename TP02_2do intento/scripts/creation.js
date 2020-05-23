@@ -75,7 +75,12 @@ let arrepentido = () => {
 
 const imagen = document.getElementById('cuadroVideo');
 const elGifF = document.getElementById('cuadroImg');
+const repetir = document.getElementById('repetir');
+const subir = document.getElementById('subir');
+
 elGifF.style.display = "none";
+repetir.style.display = "none";
+subir.style.display = "none";
 var textirijillo = document.getElementById("changeling");
 var cuadrito = document.getElementById("camaraFotoBtn");
 var detenteInsensato = document.getElementById("btn-stop-recording");
@@ -170,8 +175,12 @@ let alInicio = () => {
         function stopRecordingCallback() {
           textirijillo.innerHTML = "Vista previa";
           elGifF.src = URL.createObjectURL(recorder.getBlob());
+          detenteInsensato.style.display = "none";
+          document.getElementById("camaraFotoBtn").style.display = "none";
           imagen.style.display = "none";
           elGifF.style.display = "block";
+          repetir.style.display = "block";
+          subir.style.display = "block";
           recorder.camera.stop();
           recorder.destroy();
           recorder = null;
