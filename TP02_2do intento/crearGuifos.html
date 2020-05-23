@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/light_theme.css" type="text/css" id = "estilardo">
     <title>GifOS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;1,700&display=swap" rel="stylesheet">
 </head>
 <body onload="theme_selection()">
     <div class="movingTrain">
@@ -30,7 +30,7 @@
                         <img src="assets/window img.png" alt="window image">
                         <span class="titleStart">Aquí podrás crear tus propios guifos</span>
                         <p class="mainP">
-                            Crear tu guifo es muy fácil, graba cualquier imagen con tu cámara y obtén guifos personalizados. Los pasos para crear tu guifo son:
+                            Crear tu <span class="oneFWord">guifo</span> es muy fácil, graba cualquier imagen con tu cámara y obtén guifos personalizados. Los pasos para crear tu guifo son:
                             <ol class="listaOrdenada">
                                 <li>Dar permisos de acceso a la cámara (sólo por el tiempo de uso)</li>
                                 <li>Capturar tu momento guifo</li>
@@ -41,8 +41,8 @@
                         </p>
                     </div>
                     <div class="lesBotons">
-                        <button class="crearbtn cancelar" onclick="location.href='index.html'">Cancelar</button>
-                        <button class="crearbtn comenzar" id="letTheGamesBegin" onclick="holis()">Comenzar</button>
+                        <button class="crearbtn cancelar" onclick="location.href='index.html'"><span class="aceptameChe">Cancelar</span></button>
+                        <button class="crearbtn comenzar" id="letTheGamesBegin" onclick="holis()"><span class="aceptameChe">Comenzar</span></button>
                     </div>
                 </div>
             </section>
@@ -57,8 +57,11 @@
                     </div>
                     <div id="captura" class="cuadroCaptura">
                         <video id="cuadroVideo"></video>
-                    
                         <img id="cuadroImg" autoplay />
+                        <div id="elDivDeCarga" class="elDivDeCarga">
+                            <img src="assets/globe_img.png" alt="globo">
+                            <span>Estamos subiendo to guifo...</span>    
+                        </div>
                     </div>
                     <div class="startCapturaBtn" id="cajaDeAbajo">
                         <div class="cajitaReloj" id="laDuracion">
@@ -66,10 +69,11 @@
                         </div>
                         <div class="paLaDerecha">
                             <img alt="camara" class="camaraFotoBtn" id="camaraFotoBtn">
-                            <button class="capturarBtn" id="btn-start-recording">Capturar</button>
+                            <button class="capturarBtn" id="btn-start-recording"><span class="aceptameChe">Capturar</span></button>
                             <button class="capturarBtn" id="btn-stop-recording">Listo</button>
-                            <button class="capturarBtn blanco" id="repetir">Repetir Captura</button>
+                            <button class="capturarBtn" id="repetir">Repetir Captura</button>
                             <button class="capturarBtn" id="subir">Subir Guifo</button>
+                            <button class="capturarBtn" id="cancelar">Cancelar</button>
                         </div>
                     </div>
                 </div>

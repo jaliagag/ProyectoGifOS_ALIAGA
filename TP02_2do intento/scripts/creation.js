@@ -1,3 +1,5 @@
+const apikey = "dkElzr6SJfgkAbeHk3kGa70yrOiwrdcP";
+
 let theme_selection = () => {
   if (typeof (Storage) !== "undefined") {
     let hayAlgoQ = window.localStorage.getItem("theme");
@@ -73,14 +75,20 @@ let arrepentido = () => {
 // VIDEO
 //////////////////////////////////////////
 
-const imagen = document.getElementById('cuadroVideo');
-const elGifF = document.getElementById('cuadroImg');
-const repetir = document.getElementById('repetir');
-const subir = document.getElementById('subir');
+const imagen = document.getElementById("cuadroVideo");
+const elGifF = document.getElementById("cuadroImg");
+const repetir = document.getElementById("repetir");
+const subir = document.getElementById("subir");
+const cancelar = document.getElementById("cancelar");
+const elDivDeCarga = document.getElementById("elDivDeCarga");
 
 elGifF.style.display = "none";
 repetir.style.display = "none";
 subir.style.display = "none";
+cancelar.style.display = "none";
+elDivDeCarga.style.display = "none";
+cancelar.style.background = "#FFFFFF";
+
 var textirijillo = document.getElementById("changeling");
 var cuadrito = document.getElementById("camaraFotoBtn");
 var detenteInsensato = document.getElementById("btn-stop-recording");
@@ -89,6 +97,9 @@ var recorder; // globally accessible
 var dateStarted; // duration
 
 let alInicio = () => {
+  document.getElementById("btn-start-recording").style.display = "block";
+  cuadrito.style.display = "block";
+  cuadrito.style.background = "#F7C9F3";
   textirijillo.innerHTML = "Un chequeo antes de empezar";
   cuadrito.src = "assets/camera.svg";
   navigator.mediaDevices.getUserMedia({
@@ -119,13 +130,13 @@ let alInicio = () => {
         }
 
         if (hr <= 0) {
-          return min + ':' + sec;
+          return min + ":" + sec;
         }
 
-        return hr + ':' + min + ':' + sec;
+        return hr + ":" + min + ":" + sec;
       }
 
-      document.getElementById('btn-start-recording').onclick = function () {
+      document.getElementById("btn-start-recording").onclick = function () {
         // esconder el botón de inicio
         textirijillo.innerHTML = "Capturando tu Guifo";
         this.style.display = "none";
@@ -147,7 +158,7 @@ let alInicio = () => {
         }
 
         recorder = RecordRTC(stream, {
-          type: 'gif',
+          type: "gif",
           frameRate: 1,
           quality: 10,
           width: 832,
@@ -176,7 +187,7 @@ let alInicio = () => {
           textirijillo.innerHTML = "Vista previa";
           elGifF.src = URL.createObjectURL(recorder.getBlob());
           detenteInsensato.style.display = "none";
-          document.getElementById("camaraFotoBtn").style.display = "none";
+          cuadrito.style.display = "none";
           imagen.style.display = "none";
           elGifF.style.display = "block";
           repetir.style.display = "block";
@@ -189,10 +200,47 @@ let alInicio = () => {
         detenteInsensato.onclick = function () {
           recorder.stopRecording(stopRecordingCallback);
         }
-        //document.getElementById('btn-stop-recording').disabled = false;
+        //document.getElementById("btn-stop-recording").disabled = false;
       };
     })
 }
+
+repetir.onclick = function() {
+  elGifF.style.display = "none";
+  subir.style.display = "none";
+  repetir.style.display = "none";
+	imagen.style.display = "block";
+	alInicio();
+}
+
+cancelar.onclick = function() {
+  elGifF.style.display = "none";
+  subir.style.display = "none";
+  repetir.style.display = "none";
+  cancelar.style.display = "none";
+  elDivDeCarga.style.display = "none";
+	imagen.style.display = "block";
+	alInicio();
+}
+
+subir.onclick = function(){
+  textirijillo.innerHTML = "Subiendo guifo";
+  imagen.style.display = "none";
+  elGifF.style.display = "none";
+  subir.style.display = "none";
+  repetir.style.display = "none";
+  laDuracion.style.visibility = "hidden";
+  cancelar.style.display = "block";
+  elDivDeCarga.style.display = "flex";
+  document.getElementById("captura").style.background = "#FFFFFF";
+
+  let enviamos = "https://upload.giphy.com/v1/gifs?api_key=" + apikey;
+
+  fetch(enviamos)
+
+
+}
+
 
 /* recorder.stopRecording(function () {
   recorder.camera.stop();
