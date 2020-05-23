@@ -95,6 +95,7 @@ var detenteInsensato = document.getElementById("btn-stop-recording");
 var laDuracion = document.getElementById("laDuracion");
 var recorder; // globally accessible
 var dateStarted; // duration
+var juegaGif;
 
 let alInicio = () => {
   document.getElementById("btn-start-recording").style.display = "block";
@@ -184,6 +185,7 @@ let alInicio = () => {
         })();
 
         function stopRecordingCallback() {
+          juegaGif = recorder.getBlob();
           textirijillo.innerHTML = "Vista previa";
           elGifF.src = URL.createObjectURL(recorder.getBlob());
           detenteInsensato.style.display = "none";
@@ -234,11 +236,25 @@ subir.onclick = function(){
   elDivDeCarga.style.display = "flex";
   document.getElementById("captura").style.background = "#FFFFFF";
 
-  let enviamos = "https://upload.giphy.com/v1/gifs?api_key=" + apikey;
+  //let enviamos = "https://upload.giphy.com/v1/gifs?api_key=" + apikey;
 
-  fetch(enviamos)
-
-
+  upload = new FormData();
+  upload.append("file", juegaGif, "usergif.gif");
+  console.log(upload.get("file"));
+  
+  fetch("https://upload.giphy.com/v1/gifs?api_key=" + apikey + "&file=" + upload, {
+    method: "POST",
+    body: upload
+    })
+    .then(response => {
+      return response.json;
+    })
+    .then(lomo => {
+      console.log(lomo);
+    })
+    .catch(err => {
+      console.log("Error al subir el gif: " + err);
+    })
 }
 
 
