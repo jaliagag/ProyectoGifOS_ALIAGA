@@ -70,6 +70,7 @@ let imprimirNewHTML = () => {
     let inputBusqueda = localStorage.getItem("searchTerm");
     //arrayardo.unshift(JSON.stringify("inputBusqueda"));
     let busqueda = `https://api.giphy.com/v1/gifs/search?api_key=${apikey}&q=${inputBusqueda}&limit=20`;
+    document.getElementById("resultadoDeBusqueda").innerHTML = ` Resultado de búsqueda: ${inputBusqueda}`
     
     let dondeImprimir = document.getElementById("resultadoBusqueda");
     fetch(busqueda).then((res) => {
@@ -77,7 +78,8 @@ let imprimirNewHTML = () => {
     }).then((json) => {
         let laNada = "";
         json.data.forEach((obj) => {
-            const url = obj.images.original.url;
+            const url = obj.images.fixed_width.url;
+            const paJuera = obj.images.original.url;
             const tags = obj.title;
             const chauGif = tags.includes("GIF");
             let finalTag = "";
@@ -89,7 +91,7 @@ let imprimirNewHTML = () => {
             }
             laNada += `
             <div class="laRecalcada" onclick="abreteSesamo(${url})">
-                <a href="${url}">
+                <a href="${paJuera}">
                     <img src="${url}" alt="gif" z-index=0 class="gifTraido" />
                     <div class="chDLL">#${finalTag}</div>
                 </a>
