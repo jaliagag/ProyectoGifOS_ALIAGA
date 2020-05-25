@@ -59,9 +59,11 @@ var buscar = document.getElementById("cuadroBusqueda");
 loEscrito.addEventListener("submit", (e) => {
     e.preventDefault();
     let finalmenteElInput = buscar.value;
-    window.localStorage.setItem("searchTerm", finalmenteElInput);
-    window.localStorage.setItem("lastSearch", finalmenteElInput);
-    window.location.href = "busq.html";
+    if (finalmenteElInput != 0) {
+        window.localStorage.setItem("searchTerm", finalmenteElInput);
+        window.localStorage.setItem("lastSearch", finalmenteElInput);
+        window.location.href = "busq.html";
+    }
 });
 
 let imprimirNewHTML = () => {
