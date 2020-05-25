@@ -250,6 +250,7 @@ subir.onclick = function(){
       return response.json;
     })
     .then(lomo => {
+      //var 
       console.log(lomo);
     })
     .catch(err => {

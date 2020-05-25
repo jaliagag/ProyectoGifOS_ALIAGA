@@ -76,9 +76,10 @@ let imprimirNewHTML = () => {
     fetch(busqueda).then((res) => {
         return res.json();
     }).then((json) => {
+        console.log(json);
         let laNada = "";
         json.data.forEach((obj) => {
-            const url = obj.images.fixed_width.url;
+            const url = obj.images.fixed_height.url;
             const paJuera = obj.images.original.url;
             const tags = obj.title;
             const chauGif = tags.includes("GIF");
