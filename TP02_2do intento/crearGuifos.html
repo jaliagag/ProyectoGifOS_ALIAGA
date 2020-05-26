@@ -78,9 +78,26 @@
                     </div>
                 </div>
             </section>
-            <section id="section33"></section>
-            <section id="section34"></section>
-            <section id="section35"></section>
+            <section id="section33">
+                <div class="crearTres">
+                    <div class="barraArriba">
+                        <a href="crearGuifos.html">
+                            <img src="assets\close.svg" alt="X" class="volverPaTras" onclick="arrepentido()" id="umaX">
+                        </a>
+                        <span> Guifo subido con éxito</span>
+                    </div>
+                    <div id="exito" class="exito">
+                        <img alt="tu Gif" id="cuadroImg" autoplay />
+                        <div id="elDivDeCarga" class="elDivDeCarga">
+                            <span>Guifo creado con éxito</span>
+                            <button class="exitoBtn" id="copiarURL"><span>Copiar enlace Guifo</span></button>
+                            <button class="exitoBtn" id="descargarGuifo"><span>Descargar Guifo</span></button>
+                            <button class="listo" id="listo" onclick="window.location.href = 'index.html';">Listo</button>
+                             
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
 
@@ -91,7 +108,7 @@
         </div>
         <div class="gifGuardados">
             <p class="centrame">
-                Todavía no has guardado ningún Guifo.
+                <span id="spanDelCentro"></span>
             </p>
         </div>
         

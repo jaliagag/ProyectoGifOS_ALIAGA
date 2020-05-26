@@ -81,6 +81,8 @@ const repetir = document.getElementById("repetir");
 const subir = document.getElementById("subir");
 const cancelar = document.getElementById("cancelar");
 const elDivDeCarga = document.getElementById("elDivDeCarga");
+const gifsDelUser = document.getElementById("gifGuardados");
+var userGif = []; // Array vacío donde voy a guardar los gifs del usuario
 
 elGifF.style.display = "none";
 repetir.style.display = "none";
@@ -187,13 +189,16 @@ let alInicio = () => {
         function stopRecordingCallback() {
           juegaGif = recorder.getBlob();
           textirijillo.innerHTML = "Vista previa";
-          elGifF.src = URL.createObjectURL(recorder.getBlob());
+          //elGifF.src = URL.createObjectURL(recorder.getBlob());
+          elGifF.src = URL.createObjectURL(juegaGif);
+
           detenteInsensato.style.display = "none";
           cuadrito.style.display = "none";
           imagen.style.display = "none";
           elGifF.style.display = "block";
           repetir.style.display = "block";
           subir.style.display = "block";
+
           recorder.camera.stop();
           recorder.destroy();
           recorder = null;
@@ -225,6 +230,15 @@ cancelar.onclick = function() {
 	alInicio();
 }
 
+function misGifs() {
+	if(localStorage.getItem('GifUsuario') != null) {
+		var gifsUser = localStorage.getItem('GifUsuario').split(",");
+	} else {
+		var gifsUser = [];
+	}
+	return gifsUser;
+}
+
 subir.onclick = function(){
   textirijillo.innerHTML = "Subiendo guifo";
   imagen.style.display = "none";
@@ -238,21 +252,40 @@ subir.onclick = function(){
 
   //let enviamos = "https://upload.giphy.com/v1/gifs?api_key=" + apikey;
 
-  upload = new FormData();
-  upload.append("file", juegaGif, "usergif.gif");
-  console.log(upload.get("file"));
+  let form = new FormData();
+  form.append("file", juegaGif, "usergif.gif");
+
+  console.log(form.get('file'))
   
-  fetch("https://upload.giphy.com/v1/gifs?api_key=" + apikey + "&file=" + upload, {
-    method: "POST",
-    body: upload
+  //fetch("https://upload.giphy.com/v1/gifs?api_key=" + apikey + "&file=" + form, {
+  
+  fetch("https://upload.giphy.com/v1/gifs?api_key=" + apikey, {
+      method: "POST",
+      body: form,
+      redirect: "follow"
     })
-    .then(response => {
-      return response.json;
+    .then((response) => response.json())
+    .then((result) => {
+      var laIDSubida = result.data.id;
+
+      var gifsUser = misGifs();
+      gifsUser.unshift(laIDSubida);
+      localStorage.setItem("GifUsuario", gifsUser);
+
+      return fetch("https://api.giphy.com/v1/gifs/" + laIDSubida + "?api_key=" + apikey);
     })
-    .then(lomo => {
-      //var 
-      console.log(lomo);
+    /* .then((response) => {
+      return response.json();
     })
+    .then(data => {
+      document.getElementById("").value = data.data.url;
+      document.getElementById("").src = userGif;
+      results.style.display = "block";
+      document.getElementById("section32").style.display = "none";
+			document.getElementById("section33").style.display = "block";
+			//Llamar a función que chequea Guifos guardados
+			checkGuifos();
+    }) */
     .catch(err => {
       console.log("Error al subir el gif: " + err);
     })
@@ -279,3 +312,7 @@ DiskStorage = {
     dataStoreName: function() {}
 };
  */
+
+if (userGif.length == 0){
+  document.getElementById("spanDelCentro").innerHTML = "Todavía no has guardado ningún Guifo.";
+};
