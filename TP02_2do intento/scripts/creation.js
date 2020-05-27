@@ -271,21 +271,23 @@ subir.onclick = function(){
       var gifsUser = misGifs();
       gifsUser.unshift(laIDSubida);
       localStorage.setItem("GifUsuario", gifsUser);
-
-      return fetch("https://api.giphy.com/v1/gifs/" + laIDSubida + "?api_key=" + apikey);
+      let lkj = fetch("https://api.giphy.com/v1/gifs/" + laIDSubida + "?api_key=" + apikey)
+      console.log(lkj)
+      return(lkj)
+      //return fetch("https://api.giphy.com/v1/gifs/" + laIDSubida + "?api_key=" + apikey);
     })
-    /* .then((response) => {
+    .then((response) => {
       return response.json();
     })
     .then(data => {
-      document.getElementById("").value = data.data.url;
-      document.getElementById("").src = userGif;
-      results.style.display = "block";
+      //document.getElementById("").value = data.data.url;
+      document.getElementById("cuadroImg").src = userGif;
+      //results.style.display = "block";
       document.getElementById("section32").style.display = "none";
 			document.getElementById("section33").style.display = "block";
 			//Llamar a función que chequea Guifos guardados
-			checkGuifos();
-    }) */
+			//checkGuifos();
+    })
     .catch(err => {
       console.log("Error al subir el gif: " + err);
     })
