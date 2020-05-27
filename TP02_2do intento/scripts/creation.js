@@ -279,14 +279,38 @@ subir.onclick = function(){
     .then((response) => {
       return response.json();
     })
-    .then(data => {
-      //document.getElementById("").value = data.data.url;
-      document.getElementById("cuadroImg").src = userGif;
+    .then(final => {
+      console.log(final);
+      let laURL = final.data.url;
+
+      document.getElementById("lastSeen").src = final.data.images.downsized_medium.url;//userGif;
       //results.style.display = "block";
       document.getElementById("section32").style.display = "none";
 			document.getElementById("section33").style.display = "block";
 			//Llamar a función que chequea Guifos guardados
-			//checkGuifos();
+      //checkGuifos();
+      //guardar en el locl storage la URL
+      window.localStorage.setItem("url", laURL);
+      // meter este gif en el local storage
+
+      // guardar link
+
+      document.getElementById("copiarURL").onclick = function () {
+        document.execCommand("copy")
+      }
+      document.getElementById("copiarURL").addEventListener("copy", function(event) {
+        event.preventDefault();
+        if (event.clipboardData) {
+          event.clipboardData.setData("text/plain", laURL);
+          //console.log(event.clipboardData.getData("text"))
+        }
+      })
+        /* var copyText = laURL;
+        /* copyText.select();
+        copyText.setSelectionRange(0, 99999) 
+        document.execCommand("copy");
+        alert("Tu URL ha sido copiada: " + copyText);*/
+      
     })
     .catch(err => {
       console.log("Error al subir el gif: " + err);
