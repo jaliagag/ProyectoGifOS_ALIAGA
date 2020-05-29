@@ -1,52 +1,6 @@
 const apikey = "dkElzr6SJfgkAbeHk3kGa70yrOiwrdcP";
 const tenor = "RZZXC4BYAXIL";
 
-//##############################################################
-//##############################################################
-
-// BUSCADOR
-
-// ELEMENTITOS GUARDADOS
-/*
-let dameBusq = () => {
-    if ( localStorage.getItem("busquedasGuardadas") != null) {
-        var busquedasGuardadas  = localStorage.getItem("busquedasGuardadas").split(",");
-    } else {
-        var busquedasGuardadas = [];
-    }
-    return busquedasGuardadas;
-}
-
-let guardame = (unaBusq) => {
-	let busquedasGuardadas = dameBusq();
-
-	let sectionWidth = document.getElementById("").offsetWidth;
-	let wrapperWidth = document.getElementById("").offsetWidth; 
- 	if ((wrapperWidth + 200) >= sectionWidth) {
-		busquedasGuardadas.pop();
-	} 
-	busquedasGuardadas.unshift(unaBusq);
-	localStorage.setItem("busquedasGuardadas", busquedasGuardadas);
-	finalmenteLasBusquedas();
-}
-
-let finalmenteLasBusquedas = () => {
-    console.log("llego3")
-	if (dameBusq() != null) {
-		let busquedasGuardadas = dameBusq();
-		let cuadritos = "";
-		busquedasGuardadas.forEach(function(item) {
-			// dónde lo guardo
-			cuadritos += `<a href="busq.html" class="cuadritos" data-term="${item}" onclick="window.localStorage.setItem("searchTerm", this)">
-			<span class="border">#${item}</span>
-			</a>`;
-		})
-		document.getElementById("guardado").innerHTML = cuadritos;
-	}
-}
-
-finalmenteLasBusquedas();*/
-
 // ELEMENTITOS GUARDADOS
 
 let abreteSesamo = (donde) => {

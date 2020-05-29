@@ -626,4 +626,7 @@ a {
   border: 1px solid #110038;
   box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF; }
 
+.sugerencias .gifGuardados {
+  display: none; }
+
 /*# sourceMappingURL=main.css.map */

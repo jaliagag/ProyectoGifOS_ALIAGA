@@ -255,7 +255,7 @@ subir.onclick = function(){
   let form = new FormData();
   form.append("file", juegaGif, "usergif.gif");
 
-  console.log(form.get('file'))
+  //console.log(form.get('file'))
   
   //fetch("https://upload.giphy.com/v1/gifs?api_key=" + apikey + "&file=" + form, {
   
@@ -267,12 +267,12 @@ subir.onclick = function(){
     .then((response) => response.json())
     .then((result) => {
       var laIDSubida = result.data.id;
+      var gifUser = misGifs();
+      gifUser.unshift(laIDSubida);
+      localStorage.setItem("GifUsuario", gifUser);
 
-      var gifsUser = misGifs();
-      gifsUser.unshift(laIDSubida);
-      localStorage.setItem("GifUsuario", gifsUser);
       let lkj = fetch("https://api.giphy.com/v1/gifs/" + laIDSubida + "?api_key=" + apikey)
-      console.log(lkj)
+      
       return(lkj)
       //return fetch("https://api.giphy.com/v1/gifs/" + laIDSubida + "?api_key=" + apikey);
     })
@@ -280,43 +280,44 @@ subir.onclick = function(){
       return response.json();
     })
     .then(final => {
-      console.log(final);
+      //console.log(final);
       let laURL = final.data.url;
-
       document.getElementById("lastSeen").src = final.data.images.downsized_medium.url;//userGif;
-      //results.style.display = "block";
+      document.getElementById("sugerencias").style.display = "block";
+      document.getElementById("gifGuardados").style.display = "block";
       document.getElementById("section32").style.display = "none";
 			document.getElementById("section33").style.display = "block";
-			//Llamar a función que chequea Guifos guardados
-      //checkGuifos();
-      //guardar en el locl storage la URL
-      window.localStorage.setItem("url", laURL);
-      // meter este gif en el local storage
+      document.getElementById("centrame").style.display = "none";
 
-      // guardar link
-
-      document.getElementById("copiarURL").onclick = function () {
-        document.execCommand("copy")
+      if(localStorage.getItem("GifUsuario") != null){
+        var comienzo = 0;
+        var cualaca = "";
+        var GifUsuario = localStorage.getItem("userGuifos").split(",");
+        GifUsuario.forEach(function(gif){
+          fetch("https://api.giphy.com/v1/gifs" + gif + "?api_key=" + apikey)
+          .then((response) => {
+            return response.json();
+          })
+          .then(resultado => {
+            comienzo++;
+            cualaca += `
+            <div class="" onclick="window.open('${resutado.data.url}')">
+				      <div class="gif_outter">
+				        <div class="gif_clip" style="background-image: url(${resultado.data.images.fixed_height.url});"></div>
+				      </div>
+		        </div>`
+          })
+        })
+        .catch((error) => {
+          return error;
+        });
       }
-      document.getElementById("copiarURL").addEventListener("copy", function(event) {
-        event.preventDefault();
-        if (event.clipboardData) {
-          event.clipboardData.setData("text/plain", laURL);
-          //console.log(event.clipboardData.getData("text"))
-        }
-      })
-        /* var copyText = laURL;
-        /* copyText.select();
-        copyText.setSelectionRange(0, 99999) 
-        document.execCommand("copy");
-        alert("Tu URL ha sido copiada: " + copyText);*/
-      
     })
     .catch(err => {
       console.log("Error al subir el gif: " + err);
     })
 }
-
+//8113.25
 
 /* recorder.stopRecording(function () {
   recorder.camera.stop();
