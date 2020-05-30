@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/light_theme.css" type="text/css" id = "estilardo">
+    <link rel="stylesheet" href="styles/light_theme.css" type="text/css" id="estilardo">
     <title>GifOS</title>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap" rel="stylesheet">
 </head>
+
 <body onload="theme_selection()">
     <div class="movingTrain">
         <span>¡Bienvenidos/as a Guifos.com! ——————Donde los gifs están.////// Número de visitas: 12.765.803</span>
@@ -20,14 +22,15 @@
             </div>
             <nav>
                 <ul>
-                    <li class="btn"><a id="create" class="border" href="crearGuifos.html"><span>Crear Guifos</span></a></li>
+                    <li class="btn"><a id="create" class="border" href="crearGuifos.html"><span>Crear Guifos</span></a>
+                    </li>
                     <li>
                         <div id="dropbtn">
                             <div class="padre01" onclick="mostrar()">
                                 <div class="span01">
                                     <span>Elegir tema</span>
                                 </div>
-                                <span class="imag01"><img src="assets/dropdown.svg" /></span>                      
+                                <span class="imag01"><img src="assets/dropdown.svg" /></span>
                             </div>
                             <div id="myDropdown" class="dropdown-content">
                                 <a id="luz" onclick="fboton()" class="option" href="#light">Sailor Day</a>
@@ -44,15 +47,15 @@
                 <span> Mis guifos</span>
             </div>
         </div>
-        <div class="gifGuardados">
-            <p class="centrame">
-                Todavía no has guardado ningún Guifo.
-            </p>
+        <div class="gifGuardados" id="gifGuardados">
+            <span class="centrame" id="centrame"></span>
         </div>
-        
+
     </div>
 
     <script src="scripts/main.js"></script>
-    <script src="scripts/app.js"></script>
+    <!-- <script src="scripts/app.js"></script> -->
+    <script src="scripts/myPrecious.js"></script>
 </body>
+
 </html>
