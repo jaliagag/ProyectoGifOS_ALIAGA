@@ -314,8 +314,7 @@ DiskStorage = {
     dataStoreName: function() {}
 };
  */
-/* 
-if (userGif.length == 0){
-  document.getElementById("spanDelCentro").innerHTML = "Todavía no has guardado ningún Guifo.";
-};
- */
+document.getElementById("descargarGuifo").onclick = function(event) {
+	event.preventDefault();
+	invokeSaveAsDialog(blob);
+}
