@@ -302,18 +302,10 @@ subir.onclick = function(){
   
 document.getElementById("copiarURL").addEventListener("click", function () {
     document.getElementById("txt_copy").select();
+    document.getElementById("txt_copy").style.visibility = "visible";
     document.execCommand('copy');
-    alert("La URL fue copiada");
   })
-/*
-DiskStorage = {
-    init: function() {},
-    Fetch: function({audioBlob: Blob, videoBlob: Blob, gifBlob: Blob}) {},
-    Store: function({audioBlob: Blob, videoBlob: Blob, gifBlob: Blob}) {},
-    onError: function() {},
-    dataStoreName: function() {}
-};
- */
+
 document.getElementById("descargarGuifo").onclick = function(event) {
 	event.preventDefault();
 	invokeSaveAsDialog(blob);
