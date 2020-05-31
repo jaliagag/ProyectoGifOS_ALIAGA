@@ -239,27 +239,6 @@ function misGifs() {
 	return gifsUser;
 }
 
-var copiame = document.getElementById("copiarURL");
-
-function copyStringToClipboard (str) {
-  // Create new element
-  var el = document.createElement('textarea');
-  // Set value (string to be copied)
-  el.value = str;
-  // Set non-editable to avoid focus and move outside of view
-  el.setAttribute('readonly', '');
-  el.style = {position: 'absolute', left: '-9999px'};
-  document.body.appendChild(el);
-  // Select text inside element
-  el.select();
-  // Copy text to clipboard
-  document.execCommand('copy');
-  // Remove temporary element
-  document.body.removeChild(el);
-
-  alert("Link a tu gran gif copiado")
-}
-
 subir.onclick = function(){
   textirijillo.innerHTML = "Subiendo guifo";
   imagen.style.display = "none";
@@ -301,22 +280,31 @@ subir.onclick = function(){
       return response.json();
     })
     .then(final => {
-      console.log(final);
+      //console.log(final);
       let laURL = final.data.url;
-      copiame.addEventListener("click", copyStringToClipboard(laURL));
+      document.getElementById("txt_copy").innerHTML = laURL;
+      //copiame.addEventListener("click", copyStringToClipboard(laURL));
       document.getElementById("lastSeen").src = final.data.images.downsized_medium.url;//userGif;
       document.getElementById("sugerencias").style.display = "block";
       document.getElementById("gifGuardados").style.display = "block";
       document.getElementById("section32").style.display = "none";
 			document.getElementById("section33").style.display = "block";
       document.getElementById("centrame").style.display = "none";
+
+      ///
+      ///
       gifsUsrGuardados();
     })
     .catch(err => {
       console.log("Error al subir el gif: " + err);
     })
-}
-
+  }
+  
+document.getElementById("copiarURL").addEventListener("click", function () {
+    document.getElementById("txt_copy").select();
+    document.execCommand('copy');
+    alert("La URL fue copiada");
+  })
 /*
 DiskStorage = {
     init: function() {},

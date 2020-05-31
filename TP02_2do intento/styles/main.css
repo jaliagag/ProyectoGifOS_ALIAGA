@@ -634,4 +634,7 @@ a {
   margin-left: 450px;
   width: 280px; }
 
+#txt_copy {
+  visibility: hidden; }
+
 /*# sourceMappingURL=main.css.map */
