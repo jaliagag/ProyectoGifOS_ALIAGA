@@ -411,8 +411,12 @@ a
 // MIS GIFS
 
 .gifGuardados
-    display: flex
-    justify-content: center
+    display: grid
+    grid-gap: 1em
+    grid-template-columns: 298px 298px 298px 298px
+    grid-template-rows: 298px 298px 298px 298px 298px
+    margin-top: 1em
+    margin-bottom: 1em
     //flex-direction: column
 
 // CREAR GIF
@@ -661,5 +665,6 @@ a
     border: 1px solid #110038
     box-shadow: inset -1px -1px 0 0 #997D97, inset 1px 1px 0 0 #FFFFFF
 
-.sugerencias .gifGuardados
-    display: none
+.centrame
+    margin-left: 450px
+    width: 280px
